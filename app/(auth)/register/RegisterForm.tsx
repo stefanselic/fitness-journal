@@ -1,4 +1,5 @@
 'use client';
+
 import { useState } from 'react';
 import styles from './RegisterForm.module.scss';
 import { RegisterResponseBodyPost } from '../../api/(auth)/register/route';
@@ -19,27 +20,27 @@ export default function RegisterForm() {
 
     if ('error' in data) {
       setError(data.error);
+      return;
     }
-    if ('user' in data) {
-      console.log(data.user);
-      router.push(`/profile/${data.user.username}`);
-      // we may have in the future revalidatePath()
-      router.refresh();
-    }
+
+    console.log(data.user);
+    router.push(`/profile/${data.user.username}`);
+    // we may have in the future revalidatePath()
+    router.refresh();
   }
 
   return (
     <form onSubmit={(event) => event.preventDefault()}>
       <h1>SIGN UP</h1>
       <label>
-        username:
+        Username:
         <input
           value={username}
           onChange={(event) => setUsername(event.currentTarget.value)}
         />
       </label>
       <label>
-        password:
+        Password:
         <input
           value={password}
           onChange={(event) => setPassword(event.currentTarget.value)}
