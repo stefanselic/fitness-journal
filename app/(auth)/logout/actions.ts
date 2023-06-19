@@ -2,6 +2,7 @@
 
 import { cookies } from 'next/headers';
 import { deleteSessionByToken } from '../../../database/sessions';
+import { redirect } from 'next/navigation';
 
 export async function logout() {
   const cookieStore = cookies();
@@ -12,4 +13,6 @@ export async function logout() {
 
   // set the cookie to be expired
   await cookies().set('sessionToken', '', { maxAge: -1 });
+
+  redirect('/');
 }

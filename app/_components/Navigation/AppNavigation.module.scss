@@ -1,0 +1,16 @@
+.navigationBar {
+  display: flex;
+  justify-content: space-between;
+  background-color: #4338ca;
+
+  a {
+    color: white;
+  }
+  border-radius: 20px;
+  padding: 20px;
+  position: fixed;
+  bottom: 15px;
+  left: calc(50% - (447.5px));
+  max-width: 855px;
+  width: 100%;
+}

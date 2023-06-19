@@ -1,5 +1,5 @@
 import { cookies } from 'next/headers';
-import { getValidSessionByToken } from '../../database/sessions';
+import { getValidSessionByToken } from '../../../database/sessions';
 import { redirect } from 'next/navigation';
 
 export default async function HomePage() {
@@ -12,10 +12,10 @@ export default async function HomePage() {
     (await getValidSessionByToken(sessionTokenCookie.value));
 
   // 3. Either redirect or render the login form
-  if (!session) redirect('/login?returnTo=/homepage');
+  if (!session) redirect('/login?returnTo=/exercises');
   return (
     <main>
-      <h1>HOMEPAGE</h1>
+      <h1>EXERCISE PAGE</h1>
       <div>
         <h3>EXERCISE 1</h3>
       </div>

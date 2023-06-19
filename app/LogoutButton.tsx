@@ -7,13 +7,18 @@ type Props = {
 };
 
 export function LogoutButton(props: Props) {
-  const router = useRouter();
   return (
     <form>
       <button
+        style={{
+          background: 'transparent',
+          border: 'none',
+          color: 'white',
+          textDecoration: 'underline',
+          cursor: 'pointer',
+        }}
         formAction={async () => {
           await props.logout();
-          router.refresh();
         }}
       >
         Logout
