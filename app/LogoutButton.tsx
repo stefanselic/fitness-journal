@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import styles from './LogoutButton.module.scss';
 
 type Props = {
   logout: () => void;
@@ -10,13 +10,7 @@ export function LogoutButton(props: Props) {
   return (
     <form>
       <button
-        style={{
-          background: 'transparent',
-          border: 'none',
-          color: 'white',
-          textDecoration: 'underline',
-          cursor: 'pointer',
-        }}
+        className={styles.logoutButton}
         formAction={async () => {
           await props.logout();
         }}

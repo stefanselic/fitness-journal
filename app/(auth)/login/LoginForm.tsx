@@ -36,23 +36,28 @@ export default function LoginForm(props: Props) {
 
   return (
     <form onSubmit={(event) => event.preventDefault()}>
-      <h1>LOGIN</h1>
-      <label>
-        Username:
-        <input
-          value={username}
-          onChange={(event) => setUsername(event.currentTarget.value)}
-        />
-      </label>
-      <label>
-        Password:
-        <input
-          value={password}
-          type="password"
-          onChange={(event) => setPassword(event.currentTarget.value)}
-        />
-      </label>
-      <button onClick={async () => await login()}>Login</button>
+      <div className={styles.inputContainer}>
+        <label className={styles.usernameInput}>
+          Username:
+          <input
+            value={username}
+            onChange={(event) => setUsername(event.currentTarget.value)}
+          />
+        </label>
+        <label className={styles.passwordInput}>
+          Password:
+          <input
+            value={password}
+            type="password"
+            onChange={(event) => setPassword(event.currentTarget.value)}
+          />
+        </label>
+      </div>
+      <div className={styles.buttonContainer}>
+        <button className={styles.button} onClick={async () => await login()}>
+          Login
+        </button>
+      </div>
       {error !== '' && <div className={styles.error}>{error}</div>}
     </form>
   );

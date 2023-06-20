@@ -23,18 +23,21 @@ export default async function LandingPage() {
 
   return (
     <LandingPageLayout>
-      <div>
+      <div className={styles.mainContainer}>
         <div className={styles.title}>
           <p>
             <i>Fit</i>
             <b>TRACK</b>
           </p>
         </div>
-        <div>
+        <div className={styles.firstParagraph}>
           <p>It's not just a fitness app</p>
-          <p>Personal your workout routine with the help of a trainer</p>
         </div>
-        <div>
+        <div className={styles.secondParagraph}>
+          <span>Personalize your workout routine with the</span>
+          <span>help of a trainer</span>
+        </div>
+        <div className={styles.imageContainer}>
           <Image
             className={styles.image}
             src={gymStats}
