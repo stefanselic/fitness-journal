@@ -39,7 +39,7 @@ export async function POST(
     // console.log(result.error);
     return NextResponse.json(
       {
-        error: 'username or password missing',
+        error: 'username or password missing*',
       },
       { status: 400 },
     );

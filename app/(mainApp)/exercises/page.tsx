@@ -1,30 +1,47 @@
-import { cookies } from 'next/headers';
-import { getValidSessionByToken } from '../../../database/sessions';
-import { redirect } from 'next/navigation';
+import Image from 'next/image';
+import Link from 'next/link';
+import styles from './page.module.scss';
+import { getExercises } from '../../../database/exercises';
 
-export default async function HomePage() {
-  // 1. Check if the sessionToken cookie exit
-  const sessionTokenCookie = cookies().get('sessionToken');
+export const metadata = {
+  title: 'Exercises',
+  description: 'All exercises',
+};
 
-  // 2. check if the sessionToken has a valid session
-  const session =
-    sessionTokenCookie &&
-    (await getValidSessionByToken(sessionTokenCookie.value));
-
-  // 3. Either redirect or render the login form
-  if (!session) redirect('/login?returnTo=/exercises');
+export default async function ProductsPage() {
+  const exercises = await getExercises();
   return (
-    <main>
-      <h1>EXERCISE PAGE</h1>
-      <div>
-        <h3>EXERCISE 1</h3>
+    <>
+      <div className={styles.header}>
+        <h1>EXERCISES</h1>
       </div>
-      <div>
-        <h3>EXERCISE 2</h3>
-      </div>
-      <div>
-        <h3>EXERCISE 3</h3>
-      </div>
-    </main>
+      <main className={styles.container}>
+        {exercises.map((exercise) => {
+          return (
+            <div
+              key={`product-div-${exercise.id}`}
+              className={styles.productContainer}
+            >
+              <div>
+                <Link
+                  href={`/exercises/${exercise.id}`}
+                  className={styles.link}
+                >
+                  {exercise.name}
+                  <div>
+                    <Image
+                      alt={exercise.name}
+                      src={`/images/${exercise.name}.png`}
+                      width={250}
+                      height={200}
+                    />
+                  </div>
+                </Link>
+              </div>
+            </div>
+          );
+        })}
+      </main>
+    </>
   );
 }
