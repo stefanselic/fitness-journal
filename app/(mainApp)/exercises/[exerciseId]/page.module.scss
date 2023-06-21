@@ -1,0 +1,35 @@
+.exerciseName {
+  margin-top: 64px;
+  display: flex;
+  justify-content: center;
+}
+
+.exerciseMuscleType {
+  display: flex;
+  justify-content: center;
+  font-size: 120%;
+}
+
+.exerciseImage {
+  display: flex;
+  justify-content: center;
+}
+
+.instruction {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+  font-weight: bold;
+  font-size: 120%;
+}
+
+.exerciseInstruction {
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  gap: 32px;
+  padding-top: 32px;
+  font-size: 110%;
+}

@@ -3,6 +3,7 @@ import { getValidSessionByToken } from '../../../../database/sessions';
 import { notFound, redirect } from 'next/navigation';
 import Image from 'next/image';
 import { getExerciseById } from '../../../../database/exercises';
+import styles from './page.module.scss';
 // import styles from './page.module.scss';
 
 export const dynamic = 'force-dynamic';
@@ -36,17 +37,23 @@ export default async function ExercisePage(props: Props) {
   if (!session) redirect('/login?returnTo=/exercises');
   return (
     <main>
-      <h2>EXERCISE</h2>
-      <Image
-        alt="exercise"
-        src={`/images/${singleExercise.name}.png`}
-        width={200}
-        height={150}
-      />
-      <div>
-        <h1>{singleExercise.name}</h1>
-        <p>Muscle: {singleExercise.muscle}</p>
-        <p>Instructions: {singleExercise.instructions}</p>
+      <h1 className={styles.exerciseName}>
+        {singleExercise.name.toUpperCase()}
+      </h1>
+      <h4 className={styles.exerciseMuscleType}>
+        Muscle: {singleExercise.muscle}
+      </h4>
+      <div className={styles.exerciseImage}>
+        <Image
+          alt="exercise"
+          src={`/images/${singleExercise.name}.png`}
+          width={300}
+          height={250}
+        />
+      </div>
+      <div className={styles.instruction}>Instructions:</div>
+      <div className={styles.exerciseInstruction}>
+        <p>{singleExercise.instructions}</p>
       </div>
     </main>
   );

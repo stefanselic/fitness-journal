@@ -27,7 +27,7 @@ export default async function ProductsPage() {
                   href={`/exercises/${exercise.id}`}
                   className={styles.link}
                 >
-                  {exercise.name}
+                  {exercise.name.toUpperCase()}
                   <div>
                     <Image
                       alt={exercise.name}
