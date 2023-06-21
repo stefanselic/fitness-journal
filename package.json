@@ -11,10 +11,12 @@
     "start": "next start"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.0.4",
     "bcrypt": "^5.1.0",
     "dotenv-cli": "^7.2.1",
     "dotenv-safe": "^8.2.0",
     "ley": "^0.8.1",
+    "lucide-react": "^0.248.0",
     "next": "13.4.5",
     "postgres": "^3.3.5",
     "react": "18.2.0",

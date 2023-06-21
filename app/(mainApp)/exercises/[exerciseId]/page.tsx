@@ -20,7 +20,7 @@ type Props = {
 };
 
 export default async function ExercisePage(props: Props) {
-  const singleExercise = await getExerciseById(Number(props.params.exerciseId)); // Convert the string into an number
+  const singleExercise = await getExerciseById(Number(props.params.exerciseId));
   if (!singleExercise) {
     notFound();
   }

@@ -14,11 +14,13 @@ export default async function AppNavigation() {
     : await getUserBySessionToken(sessionToken.value);
 
   return (
-    <nav className={styles.navigationBar}>
-      <Link href={`/profile/${user.username}`}>Profile</Link>
-      <Link href="/homepage">Homepage</Link>
-      <Link href="/exercises">Exercises</Link>
-      <LogoutButton logout={logout} />
-    </nav>
+    <div className={styles.navigationBarContainer}>
+      <nav className={styles.navigationBar}>
+        <Link href={`/profile/${user.username}`}>Profile</Link>
+        <Link href="/homepage">Homepage</Link>
+        <Link href="/exercises">Exercises</Link>
+        <LogoutButton logout={logout} />
+      </nav>
+    </div>
   );
 }

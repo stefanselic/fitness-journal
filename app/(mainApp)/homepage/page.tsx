@@ -1,6 +1,9 @@
 import { cookies } from 'next/headers';
 import { getValidSessionByToken } from '../../../database/sessions';
 import { redirect } from 'next/navigation';
+import styles from './page.module.scss';
+import Modal from '../../_components/Modal/Modal';
+import AddDiaryEntryForm from '../../_components/AddDiaryEntryForm/AddDiaryEntryForm';
 
 export default async function HomePage() {
   // 1. Check if the sessionToken cookie exit
@@ -15,19 +18,19 @@ export default async function HomePage() {
   if (!session) redirect('/login?returnTo=/homepage');
   return (
     <main>
-      <h1>HOMEPAGE</h1>
-      <div>
-        <h3>EXERCISE 1</h3>
+      <div className={styles.searchContainer}>
+        <input
+          type="text"
+          placeholder="search"
+          className={styles.searchInput}
+        />
       </div>
-      <div>
-        <h3>EXERCISE 2</h3>
-      </div>
-      <div>
-        <h3>EXERCISE 3</h3>
+      <div className={styles.addToDiaryContainer}>
+        <Modal
+          triggerComponent={<button>Add to diary</button>}
+          modalBody={<AddDiaryEntryForm />} // pass prop
+        />
       </div>
     </main>
   );
 }
-
-// 1 - Layout - landing page
-// 2 - Layout - app

@@ -10,9 +10,16 @@
   }
   border-radius: 20px;
   padding: 20px;
-  position: fixed;
-  bottom: 15px;
-  left: calc(50% - (447.5px));
+  margin: 0 20px;
+  position: relative;
   max-width: 855px;
   width: 100%;
+}
+
+.navigationBarContainer {
+  bottom: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: fixed;
 }

@@ -6,7 +6,9 @@ export default function AppLayout({
   return (
     <>
       <main>{children}</main>
-      <AppNavigation />
+      <div style={{ height: '80px' }}>
+        <AppNavigation />
+      </div>
     </>
   );
 }
