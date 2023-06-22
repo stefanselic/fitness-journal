@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation';
 import styles from './page.module.scss';
 import Modal from '../../_components/Modal/Modal';
 import AddDiaryEntryForm from '../../_components/AddDiaryEntryForm/AddDiaryEntryForm';
+import { getExercises } from '../../../database/exercises';
 
 export default async function HomePage() {
   // 1. Check if the sessionToken cookie exit
@@ -16,6 +17,7 @@ export default async function HomePage() {
 
   // 3. Either redirect or render the login form
   if (!session) redirect('/login?returnTo=/homepage');
+  const exercises = await getExercises();
   return (
     <main>
       <div className={styles.searchContainer}>
@@ -28,7 +30,7 @@ export default async function HomePage() {
       <div className={styles.addToDiaryContainer}>
         <Modal
           triggerComponent={<button>Add to diary</button>}
-          modalBody={<AddDiaryEntryForm />} // pass prop
+          modalBody={<AddDiaryEntryForm exercisesList={exercises} />}
         />
       </div>
     </main>

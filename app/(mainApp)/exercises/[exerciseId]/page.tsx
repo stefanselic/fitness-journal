@@ -20,6 +20,7 @@ type Props = {
 };
 
 export default async function ExercisePage(props: Props) {
+  console.log('This are my props:', props);
   const singleExercise = await getExerciseById(Number(props.params.exerciseId));
   if (!singleExercise) {
     notFound();

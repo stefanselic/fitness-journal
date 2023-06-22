@@ -4,6 +4,8 @@ import styles from './Modal.module.scss';
 import { X } from 'lucide-react';
 
 export default function Modal({ triggerComponent, modalBody }) {
+  // console.log('triggerComponent:', triggerComponent);
+  // console.log('modalBody:', modalBody);
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>{triggerComponent}</Dialog.Trigger>
