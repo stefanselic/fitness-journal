@@ -4,6 +4,46 @@
   padding: 16px;
 }
 
+.section {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+}
+
+.border {
+  border-top: 2px solid #c2c2c2c2;
+}
+
+.exerciseContainer {
+  display: flex;
+  margin-top: 32px;
+  padding: 15px;
+  width: fit-content;
+  background-color: #ffffff;
+  border-radius: 5px;
+  border: 1px solid #c2c2c2c2;
+  box-shadow: 0px 4px 6px -1px #0000001a;
+  li {
+    margin-top: 16px;
+  }
+}
+
+.exerciseImage {
+  background-color: #ffffff;
+  border-radius: 5px;
+  border: 1px solid #c2c2c2c2;
+  box-shadow: 0px 4px 6px -1px #0000001a;
+}
+
+.exerciseName {
+  display: flex;
+  justify-content: center;
+}
+
+.exerciseWeightsReps {
+  gap: 16px;
+}
+
 .searchContainer {
   display: flex;
   width: 100%;
@@ -24,4 +64,19 @@
   border-radius: 5px;
   border: 1px solid #c2c2c2c2;
   box-shadow: 0px 4px 6px -1px #0000001a;
+}
+
+.button {
+  font-size: 105%;
+  padding: 8px 16px;
+  border-radius: 10px;
+  background-color: #4338ca;
+  color: #fff;
+  font-weight: bold;
+  border: 2px solid #4338ca;
+  cursor: pointer;
+  &:hover {
+    background-color: black;
+    color: white;
+  }
 }

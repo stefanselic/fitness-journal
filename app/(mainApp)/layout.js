@@ -1,8 +1,6 @@
 import AppNavigation from '../_components/Navigation/AppNavigation';
 
-export default function AppLayout({
-  children, // will be a page or nested layout
-}) {
+export default function AppLayout({ children }) {
   return (
     <>
       <main>{children}</main>

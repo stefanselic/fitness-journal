@@ -2,8 +2,8 @@ import Image from 'next/image';
 
 import gymStats from '../public/images/fitness-stats.png';
 import styles from './page.module.scss';
-import LoginPageButton from './_components/LoginPageButton';
-import RegisterPageButton from './_components/RegisterPageButton';
+import LoginPageButton from './_components/LoginPageButton/LoginPageButton';
+import RegisterPageButton from './_components/RegisterPageButton/RegisterPageButton';
 import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
 import { getUserBySessionToken } from '../database/users';

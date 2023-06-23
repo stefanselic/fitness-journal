@@ -4,6 +4,8 @@ import { getUserByUsername } from '../../../../database/users';
 import { cookies } from 'next/headers';
 import { getValidSessionByToken } from '../../../../database/sessions';
 import styles from './page.module.scss';
+import LandingPageLayout from '../../../_components/LandingPageLayout/LandingPageLayout';
+import Image from 'next/image';
 
 type Props = {
   params: { username: string };
@@ -27,17 +29,23 @@ export default async function ProfileUsernamePage({ params }: Props) {
   }
 
   return (
-    <>
-      <div></div>
-      <main className={styles.profileContainer}>
-        <h1>PROFILE</h1>
+    <main className={styles.profileContainer}>
+      <div>
+        <Image
+          alt="exercise"
+          src="/images/profile.png"
+          width={500}
+          height={350}
+        />
+      </div>
+      <div className={styles.infoContainer}>
         <div>
           Id: <b>{user.id}</b>
         </div>
         <div>
           Username: <b>{user.username}</b>
         </div>
-      </main>
-    </>
+      </div>
+    </main>
   );
 }

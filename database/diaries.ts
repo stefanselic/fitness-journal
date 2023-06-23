@@ -1,58 +1,55 @@
 import { cache } from 'react';
 import { sql } from './connect';
-import { Diary } from '../migrations/1687424713-createDiaries';
 
-// export type Diary = {
-//   id: number;
-//   user_id: number;
-//   exercises_id: number;
-//   date: number;
-//   sets: number;
-//   reps: number;
-//   weight: number;
-// };
+interface DiaryTransformed {
+  id: number;
+  date: Date;
+  name: string | null;
+}
 
+interface Set {
+  weight: number;
+  reps: number;
+  diaryId: number;
+}
+
+interface DiaryWithSets extends DiaryTransformed {
+  sets: Set[];
+}
 export const getDiaries = cache(async () => {
-  const diary = await sql<Diary[]>`
-    SELECT * FROM diaries
- `;
-  return diary;
-});
-
-export const getDiaryById = cache(async (id: number) => {
-  const [diary] = await sql<Diary[]>`
-    SELECT
-      *
-    FROM
-      diaries
-    WHERE
-      id = ${id}
-  `;
-  return diary;
-});
-
-export const createDiary = cache(
-  async (
-    userId: number,
-    exercisesId: number,
-    date: Date,
-    sets: number,
-    reps: number,
-    weight: number,
-  ) => {
-    const [diary] = await sql<Diary[]>`
-    INSERT INTO diaries
-      (user_id, exercises_id, date, sets, reps, weight)
-    VALUES
-      (${userId}, ${exercisesId}, ${date}, ${sets}, ${reps}, ${weight})
-    RETURNING
-      user_id,
-      exercises_id,
-      date,
-      sets,
-      reps
+  const diaries = await sql<{ id: number; date: Date; name: string | null }[]>`
+    SELECT diaries.id, diaries.date, exercises.name FROM diaries
+      LEFT JOIN exercises ON exercises.id = diaries.id
  `;
 
-    return diary;
-  },
-);
+  const diaryIDs = diaries.map((diaryElement) => {
+    return diaryElement.id;
+  });
+
+  const sets = await sql<{ weight: number; reps: number; diaryId: number }[]>`
+      SELECT sets.weight, sets.reps, sets.diary_id FROM sets WHERE sets.diary_id = ANY(${diaryIDs})
+   `;
+
+  // This is bad (can be too slow)
+  // const data = diaries.map((diary) => {
+  //   const matchingSets = sets.filter((set) => set.diaryId === diary.id);
+  //   return { ...diary, sets: matchingSets };
+  // });
+
+  const setsByDiaryId: { [key: number]: Set[] } = sets.reduce(
+    (acc: any, set) => {
+      const { diaryId, ...rest } = set;
+      acc[diaryId] = acc[diaryId] || [];
+      acc[diaryId].push(rest);
+      return acc;
+    },
+    {},
+  );
+
+  const data: DiaryWithSets[] = diaries.map((diary) => ({
+    ...diary,
+    sets: setsByDiaryId[diary.id] || [],
+  }));
+
+  return data;
+});
