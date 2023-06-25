@@ -1,5 +1,6 @@
 import { cache } from 'react';
 import { sql } from './connect';
+import { Diary } from '../migrations/1687424713-createDiaries';
 
 interface DiaryTransformed {
   id: number;
@@ -8,18 +9,72 @@ interface DiaryTransformed {
 }
 
 interface Set {
+  id: number;
   weight: number;
   reps: number;
   diaryId: number;
 }
 
-interface DiaryWithSets extends DiaryTransformed {
+export interface DiaryWithSets extends DiaryTransformed {
+  [x: string]: any;
   sets: Set[];
 }
-export const getDiaries = cache(async () => {
-  const diaries = await sql<{ id: number; date: Date; name: string | null }[]>`
-    SELECT diaries.id, diaries.date, exercises.name FROM diaries
-      LEFT JOIN exercises ON exercises.id = diaries.id
+
+export const insertDiaryEntry = async (formData: any) => {
+  const {
+    exerciseSelection,
+    exerciseReps1,
+    exerciseWeight1,
+    exerciseReps2,
+    exerciseWeight2,
+    exerciseReps3,
+    exerciseWeight3,
+    userId,
+  } = formData;
+
+  // Insert into diaries table
+  const diaryInsertResult = await sql<{ id: number }[]>`
+    INSERT INTO diaries (date, exercises_id, user_id)
+    VALUES (CURRENT_DATE, ${Number(exerciseSelection)}, ${Number(userId)})
+    RETURNING id
+  `;
+
+  console.log('exerciseSelection', exerciseSelection);
+
+  const diaryId = diaryInsertResult[0]?.id;
+
+  if (diaryId) {
+    // Insert into sets table
+    const setsInsertResult = await sql<
+      {
+        id: number;
+        diaryId: number | null;
+        weight: number | null;
+        reps: number | null;
+      }[]
+    >`
+    INSERT INTO sets (weight, reps, diary_id)
+    VALUES
+       (${Number(exerciseWeight1)}, ${Number(exerciseReps1)}, ${diaryId}),
+      (${Number(exerciseWeight2)}, ${Number(exerciseReps2)}, ${diaryId}),
+      (${Number(exerciseWeight3)}, ${Number(exerciseReps3)}, ${diaryId})
+    RETURNING *
+  `;
+
+    return {
+      diaryId,
+      sets: setsInsertResult,
+    };
+  } else {
+    throw new Error('Failed to insert diary entry');
+  }
+};
+
+export const getDiaries = cache(async (userId: number) => {
+  const diaries = await sql<
+    { id: number; date: Date | null; name: string | null }[]
+  >`
+    SELECT diaries.id, diaries.date, exercises.name FROM diaries LEFT JOIN exercises ON exercises.id = diaries.exercises_id where diaries.user_id = ${userId}
  `;
 
   const diaryIDs = diaries.map((diaryElement) => {

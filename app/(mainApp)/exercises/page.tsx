@@ -28,12 +28,20 @@ export default async function ProductsPage() {
                   className={styles.link}
                 >
                   {exercise.name.toUpperCase()}
-                  <div>
+                  <div
+                    style={{
+                      position: 'relative',
+                      width: '250px',
+                      height: '200px',
+                    }}
+                  >
                     <Image
                       alt={exercise.name}
+                      style={{
+                        objectFit: 'contain',
+                      }}
                       src={`/images/${exercise.name}.png`}
-                      width={250}
-                      height={200}
+                      fill
                     />
                   </div>
                 </Link>

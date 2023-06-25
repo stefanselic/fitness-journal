@@ -2,27 +2,71 @@
 
 import { useState } from 'react';
 import styles from './AddDiaryEntryForm.module.scss';
+import { z } from 'zod';
+import { useRouter } from 'next/navigation';
+
+const postSchema = z.object({
+  exerciseSelection: z.string().min(1),
+  exerciseReps1: z.string().min(1, 'Please enter rep range'),
+  exerciseWeight1: z.string().min(1),
+  exerciseReps2: z.string().min(1),
+  exerciseWeight2: z.string().min(1),
+  exerciseReps3: z.string().min(1),
+  exerciseWeight3: z.string().min(1),
+  userId: z.number().min(1),
+});
 
 export default function AddDiaryEntryForm(props) {
-  const [exerciseSelection, setExerciseSelection] = useState(
-    props.exercisesList[0].id,
-  );
-  const [exerciseReps1, setExerciseReps1] = useState();
-  const [exerciseWeight1, setExerciseWeight1] = useState();
-  const [exerciseReps2, setExerciseReps2] = useState();
-  const [exerciseWeight2, setExerciseWeight2] = useState();
-  const [exerciseReps3, setExerciseReps3] = useState();
-  const [exerciseWeight3, setExerciseWeight3] = useState();
+  const [errors, setErrors] = useState(null);
+  const router = useRouter();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // Prevents the default form submission behavior
+
+    // Create an object with the form data
+    const formData = {
+      exerciseSelection: event.currentTarget.elements.exerciseSelect.value,
+      exerciseReps1: event.currentTarget.elements.rep1.value,
+      exerciseWeight1: event.currentTarget.elements.weight1.value,
+      exerciseReps2: event.currentTarget.elements.rep2.value,
+      exerciseWeight2: event.currentTarget.elements.weight2.value,
+      exerciseReps3: event.currentTarget.elements.rep3.value,
+      exerciseWeight3: event.currentTarget.elements.weight3.value,
+      userId: props.userId,
+    };
+
+    const validationResult = postSchema.safeParse(formData);
+
+    if (validationResult.success) {
+      const formDataString = JSON.stringify(formData);
+
+      await fetch('/api/diary', {
+        method: 'POST',
+        body: formDataString,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }).then((data) => {
+        if (data.status === 200) {
+          props.setOpenCustom(false);
+          router.refresh();
+        }
+      });
+    } else {
+      setErrors(validationResult.error.format());
+    }
+  };
 
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit} onFocus={() => setErrors(null)}>
         <div>
           <label htmlFor="exercise_select">Select Exercise</label>
           <div>
             <select
               id="exercise_select"
-              onChange={setExerciseSelection}
+              name="exerciseSelect"
+              defaultValue={props.exercisesList[0].id}
               className={styles.selectBar}
             >
               {props.exercisesList.map((exercise) => (
@@ -36,25 +80,11 @@ export default function AddDiaryEntryForm(props) {
             <div>1.</div>
             <div>
               <label htmlFor="rep1">Reps:</label>
-              <input
-                type="number"
-                id="rep1"
-                value={exerciseReps1}
-                onChange={(event) => {
-                  setExerciseReps1(event.currentTarget.value);
-                }}
-              />
+              <input type="number" min={1} name="rep1" id="rep1" />
             </div>
             <div>
               <label htmlFor="weight">Weight:</label>
-              <input
-                type="number"
-                id="weight"
-                value={exerciseWeight1}
-                onChange={(event) => {
-                  setExerciseWeight1(event.currentTarget.value);
-                }}
-              />
+              <input type="number" min={1} id="weight1" name="weight1" />
             </div>
             <span>kg</span>
           </div>
@@ -62,25 +92,11 @@ export default function AddDiaryEntryForm(props) {
             <div>2.</div>
             <div>
               <label htmlFor="rep2">Reps:</label>
-              <input
-                type="number"
-                id="rep2"
-                value={exerciseReps2}
-                onChange={(event) => {
-                  setExerciseReps2(event.currentTarget.value);
-                }}
-              />
+              <input type="number" min={1} id="rep2" name="rep2" />
             </div>
             <div>
-              <label htmlFor="weight">Weight:</label>
-              <input
-                type="number"
-                id="weight"
-                value={exerciseWeight2}
-                onChange={(event) => {
-                  setExerciseWeight2(event.currentTarget.value);
-                }}
-              />
+              <label htmlFor="weight2">Weight:</label>
+              <input type="number" min={1} id="weight2" name="weight2" />
             </div>
             <span>kg</span>
           </div>
@@ -88,25 +104,11 @@ export default function AddDiaryEntryForm(props) {
             <div>3.</div>
             <div>
               <label htmlFor="rep3">Reps:</label>
-              <input
-                type="number"
-                id="rep3"
-                value={exerciseReps3}
-                onChange={(event) => {
-                  setExerciseReps3(event.currentTarget.value);
-                }}
-              />
+              <input type="number" min={1} id="rep3" name="rep3" />
             </div>
             <div>
-              <label htmlFor="weight">Weight:</label>
-              <input
-                type="number"
-                id="weight"
-                value={exerciseWeight3}
-                onChange={(event) => {
-                  setExerciseWeight3(event.currentTarget.value);
-                }}
-              />
+              <label htmlFor="weight3">Weight:</label>
+              <input type="number" min={1} id="weight3" name="weight3" />
             </div>
             <span>kg</span>
           </div>
@@ -114,21 +116,8 @@ export default function AddDiaryEntryForm(props) {
             <button className={styles.button}>Add to diary</button>
           </div>
         </div>
+        {errors !== null && <p>Some error message</p>}
       </form>
     </div>
   );
 }
-
-// const addExercise = async () => {
-//   await fetch('/addDiary', {
-//     headers: {
-//       Accept: 'application/json',
-//       'Content-Type': 'application/json',
-//     },
-//     method: 'POST',
-//     body: JSON.stringify({
-//       exerciseID: exerciseSelection,
-//       exerciseSet1: exerciseSet1,
-//     }),
-//   });
-// };
