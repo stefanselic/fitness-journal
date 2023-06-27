@@ -7,8 +7,9 @@
   font-weight: bold;
   border: 2px solid #4338ca;
   cursor: pointer;
+  transition: all 0.5s ease;
   &:hover {
-    background-color: black;
+    background: linear-gradient(50deg, #4338ca 30%, #ad38ca 80%);
     color: white;
   }
 }

@@ -85,11 +85,6 @@ export const getDiaries = cache(async (userId: number) => {
       SELECT sets.weight, sets.reps, sets.diary_id FROM sets WHERE sets.diary_id = ANY(${diaryIDs})
    `;
 
-  // This is bad (can be too slow)
-  // const data = diaries.map((diary) => {
-  //   const matchingSets = sets.filter((set) => set.diaryId === diary.id);
-  //   return { ...diary, sets: matchingSets };
-  // });
 
   const setsByDiaryId: { [key: number]: Set[] } = sets.reduce(
     (acc: any, set) => {

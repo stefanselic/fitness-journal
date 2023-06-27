@@ -44,8 +44,9 @@ export default async function ExercisePage(props: Props) {
       <h4 className={styles.exerciseMuscleType}>
         Muscle: {singleExercise.muscle}
       </h4>
-      <div className={styles.exerciseImage}>
+      <div className={styles.exerciseImageContainer}>
         <Image
+          className={styles.exerciseImage}
           alt="exercise"
           src={`/images/${singleExercise.name}.png`}
           width={300}

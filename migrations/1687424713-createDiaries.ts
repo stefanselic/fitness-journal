@@ -23,22 +23,3 @@ export async function down(sql: Sql) {
     DROP TABLE diaries
   `;
 }
-
-const data = [
-  {
-    id: 1,
-    date: '2023-06 - 23T00:00:00.000Z',
-    name: 'bench press',
-    sets: [
-      { weight: 50, reps: 5, diaryId: 1 },
-      { weight: 50, reps: 5, diaryId: 1 },
-      { weight: 50, reps: 10, diaryId: 1 },
-    ],
-  },
-  {
-    id: 2,
-    date: '2023-06-23T00:00:00.000Z',
-    name: 'positive bench press',
-    sets: [{ weight: 10, reps: 12, diaryId: 2 }],
-  },
-];

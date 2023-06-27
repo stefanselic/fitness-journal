@@ -4,10 +4,11 @@ import { getUserByUsername } from '../../../../database/users';
 import { cookies } from 'next/headers';
 import { getValidSessionByToken } from '../../../../database/sessions';
 import styles from './page.module.scss';
-import Image from 'next/image';
+// import Image from 'next/image';
+import ImageUpload from './ProfileForm';
 
 type Props = {
-  params: { username: string };
+  params: { username: any };
 };
 
 export default async function ProfileUsernamePage({ params }: Props) {
@@ -27,24 +28,18 @@ export default async function ProfileUsernamePage({ params }: Props) {
     notFound();
   }
 
+  function capitalizeFirstLetter(str: string) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
   return (
     <main className={styles.profileContainer}>
       <div>
-        <Image
-          alt="exercise"
-          src="/images/profile.png"
-          width={500}
-          height={350}
-        />
+        <b className={styles.username}>
+          {capitalizeFirstLetter(user.username)}
+        </b>
       </div>
-      <div className={styles.infoContainer}>
-        <div>
-          Id: <b>{user.id}</b>
-        </div>
-        <div>
-          Username: <b>{user.username}</b>
-        </div>
-      </div>
+      <ImageUpload />
     </main>
   );
 }

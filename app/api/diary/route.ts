@@ -1,4 +1,3 @@
-import { NextApiRequest, NextApiResponse } from 'next';
 import { insertDiaryEntry } from '../../../database/diaries';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -43,17 +42,3 @@ export async function POST(
     });
   }
 }
-
-// const addExercise = async () => {
-//   await fetch('/addDiary', {
-//     headers: {
-//       Accept: 'application/json',
-//       'Content-Type': 'application/json',
-//     },
-//     method: 'POST',
-//     body: JSON.stringify({
-//       exerciseID: exerciseSelection,
-//       exerciseSet1: exerciseSet1,
-//     }),
-//   });
-// };

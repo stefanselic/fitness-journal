@@ -10,9 +10,13 @@
   font-size: 120%;
 }
 
-.exerciseImage {
+.exerciseImageContainer {
   display: flex;
   justify-content: center;
+}
+
+.exerciseImage {
+  object-fit: contain;
 }
 
 .instruction {

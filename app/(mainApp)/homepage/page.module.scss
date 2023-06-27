@@ -11,6 +11,12 @@
   max-width: 1000px;
   margin: 0 auto;
   gap: 32px;
+  border-top: 2px #1d1c1c solid;
+}
+
+.date {
+  color: #1d1c1c;
+  font-size: 90%;
 }
 
 .groupWrapper {
@@ -20,6 +26,14 @@
 
 .border {
   border-top: 2px solid #c2c2c2c2;
+}
+
+.sets {
+  padding-right: 32px;
+}
+
+.reps {
+  padding-right: 32px;
 }
 
 .exerciseContainer {
@@ -32,7 +46,7 @@
   border: 1px solid #c2c2c2c2;
   box-shadow: 0px 4px 6px -1px #0000001a;
   li {
-    margin-top: 16px;
+    margin-top: 20px;
   }
 }
 
@@ -46,11 +60,13 @@
 .exerciseName {
   display: flex;
   justify-content: center;
+  padding-left: 32px;
+  padding-right: 4px;
 }
 
-.exerciseWeightsReps {
-  gap: 16px;
-}
+// .exerciseWeightsReps {
+//   gap: 0px;
+// }
 
 .searchContainer {
   display: flex;

@@ -2,14 +2,11 @@ import { cookies } from 'next/headers';
 import { getValidSessionByToken } from '../../../database/sessions';
 import { redirect } from 'next/navigation';
 import styles from './page.module.scss';
-import Modal from '../../_components/Modal/Modal';
-import AddDiaryEntryForm from '../../_components/AddDiaryEntryForm/AddDiaryEntryForm';
 import { getExercises } from '../../../database/exercises';
 import { DiaryWithSets, getDiaries } from '../../../database/diaries';
 import Image from 'next/image';
 import { getUserBySessionToken } from '../../../database/users';
 import AddDiaryEntryModal from '../../_components/AddDiaryEntryForm/AddDiaryEntryModal';
-// import { catchPayload } from '../../api/(auth)/homepage/route';
 
 export default async function HomePage() {
   // 1. Check if the sessionToken cookie exit
@@ -26,8 +23,6 @@ export default async function HomePage() {
   const user = !sessionTokenCookie.value
     ? undefined
     : await getUserBySessionToken(sessionTokenCookie.value);
-
-  console.log('USEr', user?.id);
 
   const exercises = await getExercises();
   const diaries = user ? await getDiaries(user.id) : [];
@@ -53,10 +48,6 @@ export default async function HomePage() {
         <AddDiaryEntryModal exercises={exercises} user={user} />
       </div>
       <div>
-        <div>
-          <span className={styles.border} />
-        </div>
-
         {groupedData &&
           Object.entries(groupedData)
             .sort(([dateA], [dateB]) => {
@@ -64,7 +55,7 @@ export default async function HomePage() {
             })
             .map((entry) => (
               <div key={`diary_${entry[1]}`} className={styles.groupWrapper}>
-                <h5>Date: {entry[0]}</h5>
+                <h5 className={styles.date}>Date: {entry[0]}</h5>
                 <section className={styles.section}>
                   {entry[1].map((diary: DiaryWithSets) => (
                     <div
@@ -79,7 +70,7 @@ export default async function HomePage() {
                           }}
                           alt="exercise"
                           src={`/images/${diary.name}.png`}
-                          width={250}
+                          width={200}
                           height={150}
                         />
                       </div>
@@ -87,13 +78,16 @@ export default async function HomePage() {
                         <div className={styles.exerciseName}>
                           <b>{diary.name?.toUpperCase()}</b>
                         </div>
-                        <ol className={styles.exerciseWeightsReps}>
+                        <ol>
                           {diary.sets.map((set, index) => (
                             <li key={index}>
-                              <div>
-                                <span>Weight:{set.weight}---</span>
-                                <span>Reps:{set.reps}</span>
-                              </div>
+                              <span className={styles.sets}>Set</span>
+                              <span className={styles.reps}>
+                                {set.reps}reps
+                              </span>
+                              <span className={styles.weight}>
+                                {set.weight}kg
+                              </span>
                             </li>
                           ))}
                         </ol>

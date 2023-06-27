@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 
 const postSchema = z.object({
   exerciseSelection: z.string().min(1),
-  exerciseReps1: z.string().min(1, 'Please enter rep range'),
+  exerciseReps1: z.string().min(1),
   exerciseWeight1: z.string().min(1),
   exerciseReps2: z.string().min(1),
   exerciseWeight2: z.string().min(1),
@@ -21,7 +21,7 @@ export default function AddDiaryEntryForm(props) {
   const router = useRouter();
 
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevents the default form submission behavior
+    event.preventDefault();
 
     // Create an object with the form data
     const formData = {
@@ -115,8 +115,10 @@ export default function AddDiaryEntryForm(props) {
           <div>
             <button className={styles.button}>Add to diary</button>
           </div>
+          {errors !== null && (
+            <p style={{ color: 'red' }}>Please fill out form*</p>
+          )}
         </div>
-        {errors !== null && <p>Some error message</p>}
       </form>
     </div>
   );

@@ -5,7 +5,13 @@ import styles from './AppNavigation.module.scss';
 import { LogoutButton } from '../../LogoutButton/LogoutButton';
 import { logout } from '../../(auth)/logout/actions';
 import Image from 'next/image';
-import { HomeIcon, User } from 'lucide-react';
+import {
+  Dumbbell,
+  DumbbellIcon,
+  HomeIcon,
+  LucideDumbbell,
+  User,
+} from 'lucide-react';
 
 export default async function AppNavigation() {
   const cookieStore = cookies();
@@ -35,7 +41,7 @@ export default async function AppNavigation() {
               width={20}
               height={25}
             /> */}
-            <User width={20} height={25} />
+            <User width={25} height={25} />
           </Link>
         )}
         <Link href="/exercises">
