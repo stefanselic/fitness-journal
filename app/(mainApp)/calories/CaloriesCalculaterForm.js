@@ -117,7 +117,7 @@ export default function CalorieCalculator() {
           <option value="extra active">Extra Active</option>
         </select>
       </div>
-      {!isFormValid() ? (
+      {isFormValid() ? (
         <button
           onClick={calculateCalorieNeeds}
           className={styles.containerButton}

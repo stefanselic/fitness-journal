@@ -1,6 +1,9 @@
-import { deleteDiaryAndSets } from '../../../database/diaries';
+'use client';
+
+import { useRouter } from 'next/navigation';
 import styles from './DeleteButton.module.scss';
 import { useState } from 'react';
+import { revalidatePath } from 'next/cache';
 
 type DeleteButtonProps = {
   diaryId: number;
@@ -8,21 +11,26 @@ type DeleteButtonProps = {
 
 export default function DeleteButton({ diaryId }: DeleteButtonProps) {
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const handleDelete = async () => {
     setIsLoading(true);
 
     try {
-      await fetch(`/api/deleteDiary`, {
+      /*
+        const response = await fetch(`/api/diary?id=${diaryId}`, {
+        you can you query paramaters too to delete diary
+      */
+      const response = await fetch(`/api/diary/${diaryId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ diaryId }),
       });
 
-      // Refresh the diaries list after successful deletion
-      // You can refetch the data from the server and re-render the component
+      if (response.status === 200) {
+        router.refresh();
+      }
 
       setIsLoading(false);
     } catch (error) {
@@ -32,9 +40,11 @@ export default function DeleteButton({ diaryId }: DeleteButtonProps) {
   };
 
   return (
-    <button onClick={handleDelete} disabled={isLoading}>
-      {isLoading ? 'Deleting...' : 'Delete'}
-    </button>
+    <div className={styles.exerciseDeleteButtonContainer}>
+      <button onClick={handleDelete} disabled={isLoading}>
+        {/* {isLoading ? 'Deleting...' : 'Delete'}*/}X
+      </button>
+    </div>
   );
 }
 

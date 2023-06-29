@@ -2,6 +2,20 @@
   display: flex;
   flex-flow: row-reverse;
   button {
-    padding: 4px 8px;
+    padding: 8px;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    background-color: #4338ca;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    &:hover {
+      background: linear-gradient(50deg, #4338ca 30%, #ad38ca 80%);
+      color: white;
+    }
   }
 }

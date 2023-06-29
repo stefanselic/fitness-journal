@@ -3,17 +3,18 @@ import { getValidSessionByToken } from '../../../database/sessions';
 import { redirect } from 'next/navigation';
 import styles from './page.module.scss';
 import { getExercises } from '../../../database/exercises';
-import {
-  DiaryWithSets,
-  deleteDiaryAndSets,
-  getDiaries,
-} from '../../../database/diaries';
+import { DiaryWithSets, getDiaries } from '../../../database/diaries';
 import Image from 'next/image';
 import { getUserBySessionToken } from '../../../database/users';
 import AddDiaryEntryModal from '../../_components/AddDiaryEntryForm/AddDiaryEntryModal';
+import SearchBar from './SearchBar';
 import DeleteButton from './DeleteButton';
 
-export default async function HomePage() {
+export default async function HomePage({
+  searchParams,
+}: {
+  searchParams?: { [key: string]: string | string[] | undefined };
+}) {
   // 1. Check if the sessionToken cookie exit
   const sessionTokenCookie = cookies().get('sessionToken');
 
@@ -30,7 +31,11 @@ export default async function HomePage() {
     : await getUserBySessionToken(sessionTokenCookie.value);
 
   const exercises = await getExercises();
-  const diaries = user ? await getDiaries(user.id) : [];
+  const diaries = user
+    ? searchParams && searchParams.search
+      ? await getDiaries(user.id, `%${searchParams.search}%`)
+      : await getDiaries(user.id)
+    : [];
 
   const groupedData: DiaryWithSets[] = diaries.reduce(
     (groups: any, element: any) => {
@@ -44,27 +49,9 @@ export default async function HomePage() {
     {},
   );
 
-  const handleDeleteDiary = async (diaryId: any) => {
-    try {
-      await fetch(`/api/deleteDiary`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ diaryId }),
-      });
-      // Refresh the diaries list after successful deletion
-      // You can refetch the data from the server and re-render the component
-    } catch (error) {
-      console.error('Failed to delete diary entry:', error);
-    }
-  };
-
   return (
     <main>
-      <div className={styles.searchContainer}>
-        <input placeholder="search" className={styles.searchInput} />
-      </div>
+      <SearchBar />
       <div className={styles.addToDiaryContainer}>
         <AddDiaryEntryModal exercises={exercises} user={user} />
       </div>
@@ -74,8 +61,11 @@ export default async function HomePage() {
             .sort(([dateA], [dateB]) => {
               return new Date(dateB).getTime() - new Date(dateA).getTime();
             })
-            .map((entry) => (
-              <div key={`diary_${entry[1]}`} className={styles.groupWrapper}>
+            .map((entry, index) => (
+              <div
+                key={`diary_${entry[1]}_${index}`}
+                className={styles.groupWrapper}
+              >
                 <h5 className={styles.date}>Date: {entry[0]}</h5>
                 <section className={styles.section}>
                   {entry[1].map((diary: DiaryWithSets) => (
@@ -107,7 +97,9 @@ export default async function HomePage() {
                             </li>
                           ))}
                         </ol>
-                        {/* <DeleteButton diaryId={diary.id} /> */}
+                        <div>
+                          <DeleteButton diaryId={diary.id} />
+                        </div>
                       </div>
                     </div>
                   ))}

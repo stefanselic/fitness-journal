@@ -5,7 +5,7 @@ import styles from './AppNavigation.module.scss';
 import { LogoutButton } from '../../LogoutButton/LogoutButton';
 import { logout } from '../../(auth)/logout/actions';
 import Image from 'next/image';
-import { Apple, HomeIcon, User } from 'lucide-react';
+import { Apple, DumbbellIcon, HomeIcon, User } from 'lucide-react';
 
 export default async function AppNavigation() {
   const cookieStore = cookies();

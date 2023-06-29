@@ -39,8 +39,6 @@ export const insertDiaryEntry = async (formData: any) => {
     RETURNING id
   `;
 
-  console.log('diaryInsertResult', diaryInsertResult);
-
   const diaryId = diaryInsertResult[0]?.id;
 
   if (diaryId) {
@@ -70,11 +68,14 @@ export const insertDiaryEntry = async (formData: any) => {
   }
 };
 
-export const getDiaries = cache(async (userId: number) => {
+export const getDiaries = cache(async (userId: number, searchKey?: string) => {
   const diaries = await sql<
     { id: number; date: Date | null; name: string | null }[]
   >`
-    SELECT diaries.id, diaries.date, exercises.name FROM diaries LEFT JOIN exercises ON exercises.id = diaries.exercises_id where diaries.user_id = ${userId}
+    SELECT diaries.id, diaries.date, exercises.name FROM diaries LEFT JOIN exercises ON exercises.id = diaries.exercises_id where diaries.user_id = ${userId} ${
+    // eslint-disable-next-line @ts-safeql/check-sql
+    searchKey ? sql`and name LIKE ${searchKey}` : sql``
+  }
  `;
 
   const diaryIDs = diaries.map((diaryElement) => {
@@ -103,15 +104,7 @@ export const getDiaries = cache(async (userId: number) => {
   return data;
 });
 
-export const deleteDiaryAndSets = async (diaryId: number) => {
-  // Delete from sets table
-  await sql`
-    DELETE FROM
-      sets
-    WHERE
-      diary_id = ${diaryId}
-  `;
-
+export const deleteDiary = async (diaryId: number) => {
   // Delete from diaries table
   await sql`
     DELETE FROM
@@ -120,37 +113,3 @@ export const deleteDiaryAndSets = async (diaryId: number) => {
       id = ${diaryId}
   `;
 };
-
-// export const deleteAnimalById = cache(async (id: number) => {
-//   const [animal] = await sql<Animal[]>`
-//     DELETE FROM
-//       animals
-//     WHERE
-//       id = ${id}
-//     RETURNING *
-//   `;
-//   return animal;
-// });
-
-// export const deleteSessionByToken = cache(async (token: string) => {
-//   const [session] = await sql<{ id: number; token: string }[]>`
-//     DELETE FROM
-//       sessions
-//     WHERE
-//       sessions.token = ${token}
-//     RETURNING
-//       id,
-//       token
-//   `;
-
-//   return session;
-// });
-
-// export const deleteExpiredSessions = cache(async () => {
-//   await sql`
-//     DELETE FROM
-//       sessions
-//     WHERE
-//       expiry_timestamp < now()
-//   `;
-// });

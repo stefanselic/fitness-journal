@@ -4,6 +4,7 @@ import { useState } from 'react';
 import styles from './AddDiaryEntryForm.module.scss';
 import { z } from 'zod';
 import { useRouter } from 'next/navigation';
+import { revalidatePath } from 'next/cache';
 
 const postSchema = z.object({
   exerciseSelection: z.string().min(1),

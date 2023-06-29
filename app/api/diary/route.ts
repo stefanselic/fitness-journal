@@ -1,6 +1,5 @@
-import { insertDiaryEntry } from '../../../database/diaries';
+import { deleteDiary, insertDiaryEntry } from '../../../database/diaries';
 import { NextRequest, NextResponse } from 'next/server';
-import { deleteDiaryAndSets } from '../../../database/diaries';
 
 export async function POST(
   req: NextRequest,
@@ -44,17 +43,25 @@ export async function POST(
   }
 }
 
-export default async function handler(req: any, res: any) {
-  if (req.method === 'DELETE') {
-    const diaryId = req.body.diaryId;
-    try {
-      await deleteDiaryAndSets(diaryId);
-      res.status(200).end();
-    } catch (error) {
-      console.error('Failed to delete diary entry:', error);
-      res.status(500).json({ error: 'Failed to delete diary entry' });
+// another method to delete diary
+export async function DELETE(
+  req: NextRequest,
+): Promise<NextResponse<{ status: number }>> {
+  try {
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get('id');
+    if (id) {
+      await deleteDiary(Number(id));
+      return NextResponse.json({
+        status: 200,
+      });
     }
-  } else {
-    res.status(405).json({ error: 'Method Not Allowed' });
+    return NextResponse.json({
+      status: 422,
+    });
+  } catch (error) {
+    return NextResponse.json({
+      status: 500,
+    });
   }
 }
