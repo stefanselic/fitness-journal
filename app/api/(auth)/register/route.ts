@@ -65,10 +65,6 @@ export async function POST(
   // 4. store the credentials in the db
   const newUser = await createUser(result.data.username, passwordHash);
 
-  // coming soon!!
-  // 5. create a session token
-  // 6. create a cookie with session token
-
   if (!newUser) {
     // zod send you details about the error
     // console.log(result.error);

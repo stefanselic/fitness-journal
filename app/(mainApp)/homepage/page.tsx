@@ -3,10 +3,15 @@ import { getValidSessionByToken } from '../../../database/sessions';
 import { redirect } from 'next/navigation';
 import styles from './page.module.scss';
 import { getExercises } from '../../../database/exercises';
-import { DiaryWithSets, getDiaries } from '../../../database/diaries';
+import {
+  DiaryWithSets,
+  deleteDiaryAndSets,
+  getDiaries,
+} from '../../../database/diaries';
 import Image from 'next/image';
 import { getUserBySessionToken } from '../../../database/users';
 import AddDiaryEntryModal from '../../_components/AddDiaryEntryForm/AddDiaryEntryModal';
+import DeleteButton from './DeleteButton';
 
 export default async function HomePage() {
   // 1. Check if the sessionToken cookie exit
@@ -39,6 +44,22 @@ export default async function HomePage() {
     {},
   );
 
+  const handleDeleteDiary = async (diaryId: any) => {
+    try {
+      await fetch(`/api/deleteDiary`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ diaryId }),
+      });
+      // Refresh the diaries list after successful deletion
+      // You can refetch the data from the server and re-render the component
+    } catch (error) {
+      console.error('Failed to delete diary entry:', error);
+    }
+  };
+
   return (
     <main>
       <div className={styles.searchContainer}>
@@ -65,9 +86,6 @@ export default async function HomePage() {
                       <div>
                         <Image
                           className={styles.exerciseImage}
-                          style={{
-                            objectFit: 'contain',
-                          }}
                           alt="exercise"
                           src={`/images/${diary.name}.png`}
                           width={200}
@@ -81,16 +99,15 @@ export default async function HomePage() {
                         <ol>
                           {diary.sets.map((set, index) => (
                             <li key={index}>
-                              <span className={styles.sets}>Set</span>
-                              <span className={styles.reps}>
+                              <span className={styles.exerciseSets}>Set</span>
+                              <span className={styles.exerciseReps}>
                                 {set.reps}reps
                               </span>
-                              <span className={styles.weight}>
-                                {set.weight}kg
-                              </span>
+                              <span>{set.weight}kg</span>
                             </li>
                           ))}
                         </ol>
+                        {/* <DeleteButton diaryId={diary.id} /> */}
                       </div>
                     </div>
                   ))}

@@ -39,7 +39,7 @@ export const insertDiaryEntry = async (formData: any) => {
     RETURNING id
   `;
 
-  console.log('exerciseSelection', exerciseSelection);
+  console.log('diaryInsertResult', diaryInsertResult);
 
   const diaryId = diaryInsertResult[0]?.id;
 
@@ -85,7 +85,6 @@ export const getDiaries = cache(async (userId: number) => {
       SELECT sets.weight, sets.reps, sets.diary_id FROM sets WHERE sets.diary_id = ANY(${diaryIDs})
    `;
 
-
   const setsByDiaryId: { [key: number]: Set[] } = sets.reduce(
     (acc: any, set) => {
       const { diaryId, ...rest } = set;
@@ -103,3 +102,55 @@ export const getDiaries = cache(async (userId: number) => {
 
   return data;
 });
+
+export const deleteDiaryAndSets = async (diaryId: number) => {
+  // Delete from sets table
+  await sql`
+    DELETE FROM
+      sets
+    WHERE
+      diary_id = ${diaryId}
+  `;
+
+  // Delete from diaries table
+  await sql`
+    DELETE FROM
+      diaries
+    WHERE
+      id = ${diaryId}
+  `;
+};
+
+// export const deleteAnimalById = cache(async (id: number) => {
+//   const [animal] = await sql<Animal[]>`
+//     DELETE FROM
+//       animals
+//     WHERE
+//       id = ${id}
+//     RETURNING *
+//   `;
+//   return animal;
+// });
+
+// export const deleteSessionByToken = cache(async (token: string) => {
+//   const [session] = await sql<{ id: number; token: string }[]>`
+//     DELETE FROM
+//       sessions
+//     WHERE
+//       sessions.token = ${token}
+//     RETURNING
+//       id,
+//       token
+//   `;
+
+//   return session;
+// });
+
+// export const deleteExpiredSessions = cache(async () => {
+//   await sql`
+//     DELETE FROM
+//       sessions
+//     WHERE
+//       expiry_timestamp < now()
+//   `;
+// });
