@@ -3,16 +3,15 @@
 import React, { useState } from 'react';
 import styles from './CaloriesCalculaterForm.module.scss';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 
 export default function CalorieCalculator() {
-  const [age, setAge] = useState();
+  const [age, setAge] = useState('');
   const [gender, setGender] = useState('');
-  const [weight, setWeight] = useState();
-  const [height, setHeight] = useState();
+  const [weight, setWeight] = useState('');
+  const [height, setHeight] = useState('');
   const [activityLevel, setActivityLevel] = useState('');
   const [calorieNeeds, setCalorieNeeds] = useState(0);
-  const router = useRouter();
+  const [showFormError, setShowFormError] = useState(false);
 
   const calculateAdjustedCalorieNeeds = (bmr) => {
     const activityFactors = {
@@ -30,37 +29,48 @@ export default function CalorieCalculator() {
       return 0;
     }
   };
-  const calculateCalorieNeeds = () => {
-    if (gender === 'male') {
-      const bmr = 66 + 6.23 * weight + 12.7 * height - 6.8 * age;
-      setCalorieNeeds(calculateAdjustedCalorieNeeds(bmr));
-    } else if (gender === 'female') {
-      const bmr = 655 + 4.35 * weight + 4.7 * height - 4.7 * age;
-      setCalorieNeeds(calculateAdjustedCalorieNeeds(bmr));
-    } else {
-      setCalorieNeeds(0);
-      console.log('Invalid gender input.');
-    }
-  };
-
   const isFormValid = () => {
     return (
-      age > 0 &&
+      age !== '' &&
       gender !== '' &&
-      weight > 0 &&
-      height > 0 &&
+      weight !== '' &&
+      height !== '' &&
       activityLevel !== ''
     );
+  };
+
+  const calculateCalorieNeeds = () => {
+    if (isFormValid()) {
+      if (gender === 'male') {
+        const bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+        setCalorieNeeds(calculateAdjustedCalorieNeeds(bmr));
+      } else if (gender === 'female') {
+        const bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+        setCalorieNeeds(calculateAdjustedCalorieNeeds(bmr));
+      } else {
+        setCalorieNeeds(0);
+        console.log('Invalid gender input.');
+      }
+      setShowFormError(false);
+    } else {
+      setShowFormError(true);
+    }
   };
 
   return (
     <div className={styles.container}>
       <h2>Calorie Calculator</h2>
+
+      {calorieNeeds > 0 && (
+        <p className={styles.message}>
+          Calorie needs: <b>{calorieNeeds}kcal</b>
+        </p>
+      )}
       <div>
         <Image
           className={styles.image}
           alt="tracking diet image"
-          src={`/images/diet.png`}
+          src="/images/diet.png"
           width={300}
           height={250}
         />
@@ -117,21 +127,15 @@ export default function CalorieCalculator() {
           <option value="extra active">Extra Active</option>
         </select>
       </div>
-      {isFormValid() ? (
-        <button
-          onClick={calculateCalorieNeeds}
-          className={styles.containerButton}
-        >
-          Calculate
-        </button>
-      ) : (
-        <p>Please fill out the form.</p>
-      )}
-      {calorieNeeds > 0 && (
-        <p className={styles.message}>
-          Estimated daily calorie needs: {calorieNeeds}kcal
-        </p>
-      )}
+      {showFormError && <p>Please fill out the form.</p>}
+
+      <button
+        onClick={calculateCalorieNeeds}
+        className={styles.containerButton}
+        disabled={!isFormValid()}
+      >
+        Calculate
+      </button>
     </div>
   );
 }

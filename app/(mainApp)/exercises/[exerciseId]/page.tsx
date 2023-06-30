@@ -4,7 +4,6 @@ import { notFound, redirect } from 'next/navigation';
 import Image from 'next/image';
 import { getExerciseById } from '../../../../database/exercises';
 import styles from './page.module.scss';
-// import styles from './page.module.scss';
 
 export const dynamic = 'force-dynamic';
 
@@ -20,7 +19,6 @@ type Props = {
 };
 
 export default async function ExercisePage(props: Props) {
-  console.log('This are my props:', props);
   const singleExercise = await getExerciseById(Number(props.params.exerciseId));
   if (!singleExercise) {
     notFound();
@@ -36,26 +34,34 @@ export default async function ExercisePage(props: Props) {
 
   // 3. Either redirect or render the login form
   if (!session) redirect('/login?returnTo=/exercises');
+
+  function capitalizeFirstLetter(str: string) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
   return (
-    <main>
-      <h1 className={styles.exerciseName}>
-        {singleExercise.name.toUpperCase()}
-      </h1>
-      <h4 className={styles.exerciseMuscleType}>
-        Muscle: {singleExercise.muscle}
-      </h4>
-      <div className={styles.exerciseImageContainer}>
-        <Image
-          className={styles.exerciseImage}
-          alt="exercise"
-          src={`/images/${singleExercise.name}.png`}
-          width={300}
-          height={250}
-        />
-      </div>
-      <div className={styles.instruction}>Instructions:</div>
-      <div className={styles.exerciseInstruction}>
-        <p>{singleExercise.instructions}</p>
+    <main className={styles.mainContainer}>
+      <div className={styles.secondContainer}>
+        <h1>{singleExercise.name.toUpperCase()}</h1>
+        <div className={styles.exerciseMuscleType}>
+          <span>Muscle</span>
+          <span>
+            <b>{capitalizeFirstLetter(singleExercise.muscle)}</b>
+          </span>
+        </div>
+        <div>
+          <Image
+            className={styles.exerciseImage}
+            alt="exercise"
+            src={`/images/${singleExercise.name}.png`}
+            width={300}
+            height={250}
+          />
+        </div>
+        <div className={styles.exerciseInstruction}>
+          <h3>Instructions:</h3>
+          <p>{singleExercise.instructions}</p>
+        </div>
       </div>
     </main>
   );

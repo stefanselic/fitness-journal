@@ -4,7 +4,6 @@ import { getUserByUsername } from '../../../../database/users';
 import { cookies } from 'next/headers';
 import { getValidSessionByToken } from '../../../../database/sessions';
 import styles from './page.module.scss';
-// import Image from 'next/image';
 import ImageUpload from './ProfileForm';
 
 type Props = {

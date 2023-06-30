@@ -3,7 +3,6 @@
 import { useRouter } from 'next/navigation';
 import styles from './DeleteButton.module.scss';
 import { useState } from 'react';
-import { revalidatePath } from 'next/cache';
 
 type DeleteButtonProps = {
   diaryId: number;
@@ -47,20 +46,3 @@ export default function DeleteButton({ diaryId }: DeleteButtonProps) {
     </div>
   );
 }
-
-// export function DeleteCartItem(props) {
-//   return (
-//     <form
-//       action={async () => {
-//         await deleteCartItem(props.id);
-//       }}
-//     >
-//       <button
-//         data-test-id={`cart-product-remove-${props.id}`}
-//         className={styles.removeButton}
-//       >
-//         <Image alt="trash icon" src={trash} width={20} height={20} />
-//       </button>
-//     </form>
-//   );
-// }

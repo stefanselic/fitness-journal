@@ -1,5 +1,4 @@
 import { cache } from 'react';
-// import { Product } from '../migrations/1685883592-createTableProducts';
 import { sql } from './connect';
 
 export type Exercise = {

@@ -1,6 +1,5 @@
 import { cache } from 'react';
 import { sql } from './connect';
-import { Diary } from '../migrations/1687424713-createDiaries';
 
 interface DiaryTransformed {
   id: number;
@@ -72,7 +71,19 @@ export const getDiaries = cache(async (userId: number, searchKey?: string) => {
   const diaries = await sql<
     { id: number; date: Date | null; name: string | null }[]
   >`
-    SELECT diaries.id, diaries.date, exercises.name FROM diaries LEFT JOIN exercises ON exercises.id = diaries.exercises_id where diaries.user_id = ${userId} ${
+    SELECT
+      diaries.id,
+      diaries.date,
+      exercises.name
+    FROM
+      diaries
+    LEFT JOIN
+      exercises
+    ON
+      exercises.id = diaries.exercises_id
+    WHERE
+      diaries.user_id = ${userId} ${
+    // To be updated
     // eslint-disable-next-line @ts-safeql/check-sql
     searchKey ? sql`and name LIKE ${searchKey}` : sql``
   }
@@ -83,7 +94,14 @@ export const getDiaries = cache(async (userId: number, searchKey?: string) => {
   });
 
   const sets = await sql<{ weight: number; reps: number; diaryId: number }[]>`
-      SELECT sets.weight, sets.reps, sets.diary_id FROM sets WHERE sets.diary_id = ANY(${diaryIDs})
+      SELECT
+        sets.weight,
+        sets.reps,
+        sets.diary_id
+      FROM
+        sets
+      WHERE
+        sets.diary_id = ANY(${diaryIDs})
    `;
 
   const setsByDiaryId: { [key: number]: Set[] } = sets.reduce(

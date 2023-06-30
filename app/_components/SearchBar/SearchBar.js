@@ -29,8 +29,8 @@ export default function SearchBar() {
   }, [debouncedValue, router]);
 
   const handleChange = (event) => {
-    setValue(event.target.value);
-    setDebouncedValue(event.target.value);
+    setValue(event.currentTarget.value);
+    setDebouncedValue(event.currentTarget.value);
   };
 
   return (

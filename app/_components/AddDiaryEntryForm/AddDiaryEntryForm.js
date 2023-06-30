@@ -4,7 +4,6 @@ import { useState } from 'react';
 import styles from './AddDiaryEntryForm.module.scss';
 import { z } from 'zod';
 import { useRouter } from 'next/navigation';
-import { revalidatePath } from 'next/cache';
 
 const postSchema = z.object({
   exerciseSelection: z.string().min(1),
@@ -71,7 +70,7 @@ export default function AddDiaryEntryForm(props) {
               className={styles.selectBar}
             >
               {props.exercisesList.map((exercise) => (
-                <option key={exercise.id} value={exercise.id}>
+                <option key={`exercise-${exercise.id}`} value={exercise.id}>
                   {exercise.name.toUpperCase()}
                 </option>
               ))}

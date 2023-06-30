@@ -1,18 +1,26 @@
-.exerciseName {
-  margin-top: 64px;
+.mainContainer {
   display: flex;
   justify-content: center;
+}
+
+.secondContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  margin-top: 96px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 20px;
+  width: 600px;
+  padding: 32px 16px 36px 16px;
 }
 
 .exerciseMuscleType {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   font-size: 120%;
-}
-
-.exerciseImageContainer {
-  display: flex;
-  justify-content: center;
+  gap: 8px;
 }
 
 .exerciseImage {
@@ -20,20 +28,18 @@
 }
 
 .instruction {
-  display: flex;
-  justify-content: center;
-  margin-top: 32px;
   font-weight: bold;
   font-size: 120%;
 }
 
 .exerciseInstruction {
-  width: 500px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  width: 500px;
   margin: 0 auto;
-  gap: 32px;
-  padding-top: 32px;
   font-size: 110%;
+  p {
+    text-align: justify;
+  }
 }

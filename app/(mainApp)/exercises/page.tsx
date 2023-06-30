@@ -16,23 +16,15 @@ export default async function ProductsPage() {
         return (
           <div
             key={`product-div-${exercise.id}`}
-            className={styles.productContainer}
+            className={styles.exerciseContainer}
           >
             <div>
               <Link href={`/exercises/${exercise.id}`} className={styles.link}>
                 {exercise.name.toUpperCase()}
-                <div
-                  style={{
-                    position: 'relative',
-                    width: '250px',
-                    height: '200px',
-                  }}
-                >
+                <div className={styles.imageContainer}>
                   <Image
+                    className={styles.image}
                     alt={exercise.name}
-                    style={{
-                      objectFit: 'contain',
-                    }}
                     src={`/images/${exercise.name}.png`}
                     fill
                   />

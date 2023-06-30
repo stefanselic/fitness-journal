@@ -1,5 +1,4 @@
 import { cache } from 'react';
-import { Session } from '../migrations/1687103785-createSessions';
 import { sql } from './connect';
 
 export const deleteExpiredSessions = cache(async () => {
@@ -12,7 +11,9 @@ export const deleteExpiredSessions = cache(async () => {
 });
 
 export const createSession = cache(async (token: string, userId: number) => {
-  const [session] = await sql<Session[]>`
+  const [session] = await sql<
+    { id: number; token: string; userId: number | null }[]
+  >`
     INSERT INTO sessions
       (token, user_id)
     VALUES
