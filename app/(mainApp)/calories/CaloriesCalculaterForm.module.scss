@@ -2,19 +2,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 100px;
-  gap: 24px;
+  gap: 16px;
 }
 
 .containerAge {
   display: flex;
   flex-direction: column;
-  width: 360px;
+  width: 300px;
   color: #4f4f4f;
   input {
     margin-top: 8px;
     border-radius: 5px;
-    padding: 10px;
+    padding: 8px;
     border: 1px solid #c2c2c2c2;
     box-shadow: 0px 4px 6px -1px #0000001a;
   }
@@ -23,12 +22,12 @@
 .containerGender {
   display: flex;
   flex-direction: column;
-  width: 360px;
+  width: 300px;
   color: #4f4f4f;
   select {
     margin-top: 8px;
     border-radius: 5px;
-    padding: 10px;
+    padding: 8px;
     border: 1px solid #c2c2c2c2;
     box-shadow: 0px 4px 6px -1px #0000001a;
   }
@@ -37,12 +36,12 @@
 .containerWeight {
   display: flex;
   flex-direction: column;
-  width: 360px;
+  width: 300px;
   color: #4f4f4f;
   input {
     margin-top: 8px;
     border-radius: 5px;
-    padding: 10px;
+    padding: 8px;
     border: 1px solid #c2c2c2c2;
     box-shadow: 0px 4px 6px -1px #0000001a;
   }
@@ -51,12 +50,12 @@
 .containerHeight {
   display: flex;
   flex-direction: column;
-  width: 360px;
+  width: 300px;
   color: #4f4f4f;
   input {
     margin-top: 8px;
     border-radius: 5px;
-    padding: 10px;
+    padding: 8px;
     border: 1px solid #c2c2c2c2;
     box-shadow: 0px 4px 6px -1px #0000001a;
   }
@@ -65,12 +64,12 @@
 .containerActivity {
   display: flex;
   flex-direction: column;
-  width: 360px;
+  width: 300px;
   color: #4f4f4f;
   select {
     margin-top: 8px;
     border-radius: 5px;
-    padding: 10px;
+    padding: 8px;
     border: 1px solid #c2c2c2c2;
     box-shadow: 0px 4px 6px -1px #0000001a;
   }
@@ -78,8 +77,8 @@
 
 .containerButton {
   padding: 8px;
-  width: 360px;
-  height: 40px;
+  width: 300px;
+  height: 35px;
   border-radius: 10px;
   border: none;
   background-color: #4338ca;

@@ -27,9 +27,7 @@ export default function LoginForm(props: Props) {
       console.log(data.error);
       return;
     }
-    router.push(
-      getSafeReturnToPath(props.returnTo) || `/profile/${data.user.username}`,
-    );
+    router.push(getSafeReturnToPath(props.returnTo) || '/homepage');
     // we may have in the future revalidatePath()
     router.refresh();
   }
@@ -38,6 +36,7 @@ export default function LoginForm(props: Props) {
     <form onSubmit={(event) => event.preventDefault()}>
       <div className={styles.inputContainer}>
         <label className={styles.usernameInput}>
+          <h2>Login</h2>
           Username:
           <input
             value={username}

@@ -1,4 +1,4 @@
-import CaloriesCalculaterForm from '../calories/CaloriesCalculaterForm';
+import CaloriesCalculaterForm from './CaloriesCalculaterForm';
 
 export default function CaloriesTrackerPage() {
   return (

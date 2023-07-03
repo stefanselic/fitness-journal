@@ -4,8 +4,7 @@ import { getUserBySessionToken } from '../../../database/users';
 import styles from './AppNavigation.module.scss';
 import { LogoutButton } from '../../LogoutButton/LogoutButton';
 import { logout } from '../../(auth)/logout/actions';
-import Image from 'next/image';
-import { Apple,HomeIcon, User } from 'lucide-react';
+import { Apple, Dumbbell, HomeIcon, User } from 'lucide-react';
 
 export default async function AppNavigation() {
   const cookieStore = cookies();
@@ -27,12 +26,7 @@ export default async function AppNavigation() {
           </Link>
         )}
         <Link href="/exercises">
-          <Image
-            alt="exercises"
-            src="/images/dumbell.png"
-            width={25}
-            height={25}
-          />
+          <Dumbbell style={{ transform: 'rotate(315deg)' }} />
         </Link>
         <Link href="/calories">
           <Apple width={25} height={25} />

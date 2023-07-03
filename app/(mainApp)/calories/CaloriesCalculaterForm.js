@@ -68,11 +68,10 @@ export default function CalorieCalculator() {
       )}
       <div>
         <Image
-          className={styles.image}
           alt="tracking diet image"
           src="/images/diet.png"
-          width={300}
-          height={250}
+          width={230}
+          height={180}
         />
       </div>
       <div className={styles.containerAge}>
@@ -81,7 +80,13 @@ export default function CalorieCalculator() {
           type="number"
           min={1}
           value={age}
-          onChange={(event) => setAge(Number(event.currentTarget.value))}
+          onChange={(event) =>
+            setAge(
+              event.currentTarget.value !== ''
+                ? Number(event.currentTarget.value)
+                : '',
+            )
+          }
         />
       </div>
       <div className={styles.containerGender}>
@@ -101,7 +106,13 @@ export default function CalorieCalculator() {
           type="number"
           min={1}
           value={weight}
-          onChange={(event) => setWeight(Number(event.currentTarget.value))}
+          onChange={(event) =>
+            setWeight(
+              event.currentTarget.value !== ''
+                ? Number(event.currentTarget.value)
+                : '',
+            )
+          }
         />
       </div>
       <div className={styles.containerHeight}>
@@ -110,7 +121,13 @@ export default function CalorieCalculator() {
           type="number"
           min={1}
           value={height}
-          onChange={(event) => setHeight(Number(event.currentTarget.value))}
+          onChange={(event) =>
+            setHeight(
+              event.currentTarget.value !== ''
+                ? Number(event.currentTarget.value)
+                : '',
+            )
+          }
         />
       </div>
       <div className={styles.containerActivity}>

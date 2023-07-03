@@ -1,7 +1,10 @@
-import { Inter } from 'next/font/google';
+import { Lato } from 'next/font/google';
 import styles from './layout.module.scss';
 
-const inter = Inter({ subsets: ['latin'] });
+const lato = Lato({
+  weight: '400',
+  subsets: ['latin'],
+});
 
 export const metadata = {
   title: 'FitTRACK',
@@ -11,7 +14,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${styles.body}`}>{children}</body>
+      <head>
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/icon-apple-touch.png" />
+        <link rel="manifest" href="/manifest.json" />
+      </head>
+      <body className={`${lato.className} ${styles.body}`}>{children}</body>
     </html>
   );
 }

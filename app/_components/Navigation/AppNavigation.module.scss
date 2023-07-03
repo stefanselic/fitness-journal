@@ -2,17 +2,16 @@
   display: flex;
   justify-content: space-between;
   background-color: #4338ca;
-
   a {
     color: white;
     text-decoration: none;
     font-weight: bold;
   }
   border-radius: 20px;
-  padding: 20px;
-  margin: 0 20px;
+  padding: 15px;
+  margin: 0 10px;
   position: relative;
-  max-width: 855px;
+  max-width: 680px;
   width: 100%;
 }
 
@@ -22,4 +21,13 @@
   display: flex;
   justify-content: center;
   position: fixed;
+}
+
+@media screen and (max-width: 450px) {
+  .navigationBar {
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    max-width: 550px;
+  }
 }

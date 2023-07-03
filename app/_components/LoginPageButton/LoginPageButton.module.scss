@@ -11,6 +11,7 @@
   cursor: pointer;
   transition: all 0.5s ease;
   &:hover {
+    border: none;
     color: white;
     background: linear-gradient(50deg, #4338ca 30%, #ad38ca 80%);
   }

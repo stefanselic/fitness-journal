@@ -7,7 +7,7 @@ import Image from 'next/image';
 export default function ImageUpload() {
   const [file, setFile] = useState('/images/surfen.png');
 
-  const handleFileChange = (event) => {
+  const handleFileChange = (event: any) => {
     const uploadedFile = event.currentTarget.files[0];
     const fileURL = URL.createObjectURL(uploadedFile);
     setFile(fileURL);

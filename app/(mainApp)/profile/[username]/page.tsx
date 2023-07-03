@@ -1,4 +1,3 @@
-// import { notFound } from 'next/navigation';
 import { notFound, redirect } from 'next/navigation';
 import { getUserByUsername } from '../../../../database/users';
 import { cookies } from 'next/headers';

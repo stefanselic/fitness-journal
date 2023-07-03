@@ -33,6 +33,7 @@ export default function RegisterForm() {
     <form onSubmit={(event) => event.preventDefault()}>
       <div className={styles.inputContainer}>
         <label className={styles.usernameInput}>
+          <h2>Sign up</h2>
           Username:
           <input
             value={username}
