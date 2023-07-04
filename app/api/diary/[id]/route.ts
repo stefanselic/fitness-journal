@@ -2,7 +2,7 @@ import { deleteDiary } from '../../../../database/diaries';
 import { NextResponse } from 'next/server';
 
 export async function DELETE(
-  _request: Request,
+  request: Request,
   {
     params,
   }: {

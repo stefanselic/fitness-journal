@@ -41,7 +41,7 @@ export default function DeleteButton({ diaryId }: DeleteButtonProps) {
   return (
     <div className={styles.exerciseDeleteButtonContainer}>
       <button onClick={handleDelete} disabled={isLoading}>
-        {/* {isLoading ? 'Deleting...' : 'Delete'}*/}X
+        X
       </button>
     </div>
   );

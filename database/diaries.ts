@@ -7,7 +7,7 @@ interface DiaryTransformed {
   name: string | null;
 }
 
-interface Set {
+type Set = {
   id: number;
   weight: number;
   reps: number;

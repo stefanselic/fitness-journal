@@ -3,7 +3,11 @@ import styles from './layout.module.scss';
 import gymStats from '../../public/images/fitness-stats.png';
 import Image from 'next/image';
 
-export default function LandingPage({ children }) {
+type LandingPageProps = {
+  children: any,
+};
+
+export default function LandingPage({ children }: LandingPageProps) {
   return (
     <LandingPageLayout>
       <div className={styles.mainContainer}>

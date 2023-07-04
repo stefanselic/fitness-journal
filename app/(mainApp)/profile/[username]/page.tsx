@@ -6,7 +6,7 @@ import styles from './page.module.scss';
 import ImageUpload from './ProfileForm';
 
 type Props = {
-  params: { username: any };
+  params: { username: string };
 };
 
 export default async function ProfileUsernamePage({ params }: Props) {

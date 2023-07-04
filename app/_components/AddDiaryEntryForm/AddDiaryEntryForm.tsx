@@ -16,11 +16,15 @@ const postSchema = z.object({
   userId: z.number().min(1),
 });
 
-export default function AddDiaryEntryForm(props) {
+export default function AddDiaryEntryForm(props: {
+  userId: any;
+  setOpenCustom: (arg0: boolean) => void;
+  exercisesList: any[];
+}) {
   const [errors, setErrors] = useState(null);
   const router = useRouter();
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: any) => {
     event.preventDefault();
 
     // Create an object with the form data
@@ -35,7 +39,7 @@ export default function AddDiaryEntryForm(props) {
       userId: props.userId,
     };
 
-    const validationResult = postSchema.safeParse(formData);
+    const validationResult: any = postSchema.safeParse(formData);
 
     if (validationResult.success) {
       const formDataString = JSON.stringify(formData);

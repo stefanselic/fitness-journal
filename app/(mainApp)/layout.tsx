@@ -1,6 +1,10 @@
 import AppNavigation from '../_components/Navigation/AppNavigation';
 
-export default function AppLayout({ children }) {
+type AppLayoutProps = {
+  children: any,
+};
+
+export default function AppLayout({ children }: AppLayoutProps) {
   return (
     <>
       <main>{children}</main>

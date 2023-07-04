@@ -11,7 +11,11 @@ export const metadata = {
   description: 'Fitness journal for tracking your exercises',
 };
 
-export default function RootLayout({ children }) {
+type RootLayoutProps = {
+  children: any;
+};
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <head>
