@@ -23,11 +23,13 @@
   position: fixed;
 }
 
-@media screen and (max-width: 450px) {
+@media (max-width: 420px) {
+  .navigationBarContainer {
+    // width: 360px;
+    justify-content: center;
+  }
+
   .navigationBar {
-    padding: 15px;
-    border-radius: 10px;
-    font-size: 14px;
-    max-width: 550px;
+    max-width: 100%;
   }
 }

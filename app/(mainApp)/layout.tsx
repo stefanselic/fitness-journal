@@ -1,16 +1,14 @@
 import AppNavigation from '../_components/Navigation/AppNavigation';
 
 type AppLayoutProps = {
-  children: any,
+  children: any;
 };
 
 export default function AppLayout({ children }: AppLayoutProps) {
   return (
     <>
       <main>{children}</main>
-      <div style={{ height: '100px' }}>
-        <AppNavigation />
-      </div>
+      <AppNavigation />
     </>
   );
 }

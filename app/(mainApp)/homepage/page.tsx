@@ -49,13 +49,13 @@ export default async function HomePage({
   );
 
   return (
-    <main>
+    <main className={styles.mainContainer}>
       <SearchBar />
       <div className={styles.mainContainer}>
         <div className={styles.addToDiaryContainer}>
           <AddDiaryEntryModal exercises={exercises} user={user} />
         </div>
-        <div>
+        <div className={styles.groupsContainer}>
           {groupedData &&
             Object.entries(groupedData)
               .sort(([dateA], [dateB]) => {
