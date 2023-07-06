@@ -9,10 +9,14 @@
   align-items: center;
   gap: 16px;
   margin-top: 48px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  border-radius: 20px;
+
   width: 500px;
   padding: 16px 32px 16px 32px;
+  @media only screen and (max-width: 390px) {
+    width: 350px;
+    box-sizing: border-box;
+    gap: 4px;
+  }
 }
 
 .exerciseMuscleType {
@@ -25,10 +29,18 @@
 
 .exerciseImage {
   object-fit: contain;
+  @media only screen and (max-width: 390px) {
+    width: 250px;
+    height: 200px;
+  }
 }
 
 .instruction {
   font-weight: bold;
+  @media only screen and (max-width: 390px) {
+    width: 350px;
+    box-sizing: border-box;
+  }
 }
 
 .exerciseInstruction {
@@ -39,5 +51,9 @@
   margin: 0 auto;
   p {
     text-align: justify;
+  }
+  @media only screen and (max-width: 390px) {
+    width: 280px;
+    box-sizing: border-box;
   }
 }

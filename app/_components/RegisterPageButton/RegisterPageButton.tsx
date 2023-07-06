@@ -8,6 +8,7 @@ export default function RegisterPageButton() {
 
   return (
     <button
+      data-test-id="button-to-register-page"
       className={styles.button}
       type="button"
       onClick={() => router.push('/register')}

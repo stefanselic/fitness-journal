@@ -55,7 +55,7 @@ export default async function HomePage({
         <div className={styles.addToDiaryContainer}>
           <AddDiaryEntryModal exercises={exercises} user={user} />
         </div>
-        <div className={styles.groupsContainer}>
+        <div>
           {groupedData &&
             Object.entries(groupedData)
               .sort(([dateA], [dateB]) => {

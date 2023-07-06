@@ -39,6 +39,7 @@ export default function LoginForm(props: Props) {
           <h2>Login</h2>
           Username:
           <input
+            data-test-id="login-username"
             value={username}
             onChange={(event) => setUsername(event.currentTarget.value)}
           />
@@ -46,6 +47,7 @@ export default function LoginForm(props: Props) {
         <label className={styles.passwordInput}>
           Password:
           <input
+            data-test-id="login-password"
             value={password}
             type="password"
             onChange={(event) => setPassword(event.currentTarget.value)}
@@ -53,7 +55,11 @@ export default function LoginForm(props: Props) {
         </label>
       </div>
       <div className={styles.buttonContainer}>
-        <button className={styles.button} onClick={async () => await login()}>
+        <button
+          data-test-id="login-button"
+          className={styles.button}
+          onClick={async () => await login()}
+        >
           Login
         </button>
       </div>

@@ -7,7 +7,7 @@ type AppLayoutProps = {
 export default function AppLayout({ children }: AppLayoutProps) {
   return (
     <>
-      <main>{children}</main>
+      <main style={{ paddingBottom: '90px' }}>{children}</main>
       <AppNavigation />
     </>
   );

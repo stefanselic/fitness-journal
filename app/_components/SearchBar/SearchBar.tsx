@@ -36,6 +36,7 @@ export default function SearchBar() {
   return (
     <div className={styles.searchContainer}>
       <input
+        data-test-id="search-bar"
         className={styles.searchInput}
         placeholder="Search.."
         value={value}

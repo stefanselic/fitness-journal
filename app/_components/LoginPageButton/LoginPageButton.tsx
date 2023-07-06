@@ -8,6 +8,7 @@ export default function LoginPageButton() {
 
   return (
     <button
+      data-test-id="button-to-login-page"
       className={styles.button}
       type="button"
       onClick={() => router.push('/login')}

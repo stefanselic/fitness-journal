@@ -10,6 +10,23 @@
   margin: 64px auto;
   max-width: 1000px;
   gap: 15px;
+  @media only screen and (max-width: 450px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 32px 0;
+  }
+  @media only screen and (max-width: 390px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 32px 0;
+  }
+  // @media only screen and (max-width: 360px) {
+  //   width: 250px;
+  //   align-items: center;
+  //   margin: 32px 0;
+  // }
 }
 
 .exerciseContainer {
@@ -17,6 +34,16 @@
   padding: 32px 16px 0px 16px;
   max-width: 300px;
   border-radius: 20px;
+
+  @media only screen and (max-width: 450px) {
+    width: 100%;
+  }
+  @media only screen and (max-width: 390px) {
+    width: 100%;
+  }
+  @media only screen and (max-width: 360px) {
+    width: 280px;
+  }
 }
 
 .link {

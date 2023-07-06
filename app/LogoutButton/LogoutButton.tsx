@@ -16,7 +16,7 @@ export function LogoutButton(props: Props) {
           await props.logout();
         }}
       >
-        <LogOutIcon width={25} height={25} />
+        <LogOutIcon data-test-id="logout-button" width={25} height={25} />
       </button>
     </form>
   );

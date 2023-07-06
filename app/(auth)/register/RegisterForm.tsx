@@ -36,6 +36,7 @@ export default function RegisterForm() {
           <h2>Sign up</h2>
           Username:
           <input
+            data-test-id="register-username"
             value={username}
             onChange={(event) => setUsername(event.currentTarget.value)}
           />
@@ -43,6 +44,7 @@ export default function RegisterForm() {
         <label className={styles.passwordInput}>
           Password:
           <input
+            data-test-id="register-password"
             value={password}
             onChange={(event) => setPassword(event.currentTarget.value)}
             type="password"
@@ -51,6 +53,7 @@ export default function RegisterForm() {
       </div>
       <div className={styles.buttonContainer}>
         <button
+          data-test-id="register-button"
           className={styles.button}
           onClick={async () => await register()}
         >

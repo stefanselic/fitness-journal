@@ -19,7 +19,11 @@ export default function AddDiaryEntryModal({
   const [openModal, setOpenModal] = useState(false);
   return (
     <Modal
-      triggerComponent={<button className={styles.button}>Add to diary</button>}
+      triggerComponent={
+        <button data-test-id="add-to-diary-button" className={styles.button}>
+          Add to diary
+        </button>
+      }
       setOpenCustom={setOpenModal}
       openCustom={openModal}
       modalBody={

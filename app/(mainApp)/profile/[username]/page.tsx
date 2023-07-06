@@ -31,13 +31,15 @@ export default async function ProfileUsernamePage({ params }: Props) {
   }
 
   return (
-    <main className={styles.profileContainer}>
-      <div>
-        <b className={styles.username}>
-          {capitalizeFirstLetter(user.username)}
-        </b>
+    <main className={styles.mainContainer}>
+      <div className={styles.profileContainer}>
+        <div>
+          <b className={styles.username}>
+            {capitalizeFirstLetter(user.username)}
+          </b>
+        </div>
+        <ImageUpload />
       </div>
-      <ImageUpload />
     </main>
   );
 }

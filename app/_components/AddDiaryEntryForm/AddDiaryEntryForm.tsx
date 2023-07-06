@@ -68,56 +68,107 @@ export default function AddDiaryEntryForm(props: {
           <label htmlFor="exercise_select">Select Exercise</label>
           <div>
             <select
+              data-test-id="select-exercise"
               id="exercise_select"
               name="exerciseSelect"
-              defaultValue={props.exercisesList[0].id}
               className={styles.selectBar}
             >
               {props.exercisesList.map((exercise) => (
-                <option key={`exercise-${exercise.id}`} value={exercise.id}>
+                <option
+                  data-test-id={`exercise-${exercise.id}`}
+                  key={`exercise-${exercise.id}`}
+                  value={exercise.id}
+                >
                   {exercise.name.toUpperCase()}
                 </option>
               ))}
             </select>
           </div>
           <div className={styles.formContainer}>
-            <div>1.</div>
+            <span className={styles.enumeratorContainer}>1.</span>
             <div>
               <label htmlFor="rep1">Reps:</label>
-              <input type="number" min={1} name="rep1" id="rep1" />
+              <input
+                data-test-id="exercise-rep1"
+                type="number"
+                min={1}
+                name="rep1"
+                id="rep1"
+              />
             </div>
             <div>
               <label htmlFor="weight">Weight:</label>
-              <input type="number" min={1} id="weight1" name="weight1" />
+              <div className={styles.inputGroup}>
+                <input
+                  data-test-id="exercise-weight1"
+                  type="number"
+                  min={1}
+                  id="weight1"
+                  name="weight1"
+                />
+                <span className={styles.weightLabelSpan}>kg</span>
+              </div>
             </div>
-            <span>kg</span>
           </div>
           <div className={styles.formContainer}>
-            <div>2.</div>
+            <span className={styles.enumeratorContainer}>2.</span>
             <div>
               <label htmlFor="rep2">Reps:</label>
-              <input type="number" min={1} id="rep2" name="rep2" />
+              <input
+                data-test-id="exercise-rep2"
+                type="number"
+                min={1}
+                id="rep2"
+                name="rep2"
+              />
             </div>
             <div>
               <label htmlFor="weight2">Weight:</label>
-              <input type="number" min={1} id="weight2" name="weight2" />
+              <div className={styles.inputGroup}>
+                <input
+                  data-test-id="exercise-weight2"
+                  type="number"
+                  min={1}
+                  id="weight2"
+                  name="weight2"
+                />
+                <span className={styles.weightLabelSpan}>kg</span>
+              </div>
             </div>
-            <span>kg</span>
           </div>
           <div className={styles.formContainer}>
-            <div>3.</div>
+            <span className={styles.enumeratorContainer}>3.</span>
             <div>
               <label htmlFor="rep3">Reps:</label>
-              <input type="number" min={1} id="rep3" name="rep3" />
+              <input
+                data-test-id="exercise-rep3"
+                type="number"
+                min={1}
+                id="rep3"
+                name="rep3"
+              />
             </div>
             <div>
               <label htmlFor="weight3">Weight:</label>
-              <input type="number" min={1} id="weight3" name="weight3" />
+              <div className={styles.inputGroup}>
+                <input
+                  data-test-id="exercise-weight3"
+                  type="number"
+                  min={1}
+                  id="weight3"
+                  name="weight3"
+                />
+                <span className={styles.weightLabelSpan}>kg</span>
+              </div>
             </div>
-            <span>kg</span>
           </div>
           <div>
-            <button className={styles.button}>Add to diary</button>
+            <button
+              data-test-id="add-exercise-to-diary"
+              className={styles.button}
+            >
+              Add to diary
+            </button>
           </div>
           {errors !== null && (
             <p style={{ color: 'red' }}>Please fill out form*</p>

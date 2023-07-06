@@ -15,4 +15,12 @@
     color: white;
     background: linear-gradient(50deg, #4338ca 30%, #ad38ca 80%);
   }
+  @media only screen and (max-width: 360px) {
+    margin: 0 auto;
+    width: 330px;
+  }
+  @media only screen and (max-width: 330px) {
+    margin: 0 auto;
+    width: 300px;
+  }
 }

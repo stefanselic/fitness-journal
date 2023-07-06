@@ -77,6 +77,7 @@ export default function CalorieCalculator() {
       <div className={styles.containerAge}>
         <label htmlFor="age">Age:</label>
         <input
+          data-test-id="calories-input-age"
           type="number"
           min={1}
           value={age}
@@ -92,10 +93,13 @@ export default function CalorieCalculator() {
       <div className={styles.containerGender}>
         <label htmlFor="gender">Gender:</label>
         <select
+          data-test-id="calories-select"
           value={gender}
           onChange={(event) => setGender(event.currentTarget.value)}
         >
-          <option value="">Select</option>
+          <option data-test-id="calories-select-male" value="">
+            Select
+          </option>
           <option value="male">Male</option>
           <option value="female">Female</option>
         </select>
@@ -103,6 +107,7 @@ export default function CalorieCalculator() {
       <div className={styles.containerWeight}>
         <label htmlFor="weight">Weight (kg):</label>
         <input
+          data-test-id="calories-input-weight"
           type="number"
           min={1}
           value={weight}
@@ -118,6 +123,7 @@ export default function CalorieCalculator() {
       <div className={styles.containerHeight}>
         <label htmlFor="height">Height (cm):</label>
         <input
+          data-test-id="calories-input-height"
           type="number"
           min={1}
           value={height}
@@ -133,6 +139,7 @@ export default function CalorieCalculator() {
       <div className={styles.containerActivity}>
         <label htmlFor="activity level">Activity Level:</label>
         <select
+          data-test-id="calories-select-activity-level"
           value={activityLevel}
           onChange={(event) => setActivityLevel(event.currentTarget.value)}
         >
@@ -147,6 +154,7 @@ export default function CalorieCalculator() {
       {showFormError && <p>Please fill out the form.</p>}
 
       <button
+        data-test-id="calculate-calories-button"
         onClick={calculateCalorieNeeds}
         className={styles.containerButton}
         disabled={!isFormValid()}
