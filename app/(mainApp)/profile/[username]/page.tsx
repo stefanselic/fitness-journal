@@ -34,9 +34,9 @@ export default async function ProfileUsernamePage({ params }: Props) {
     <main className={styles.mainContainer}>
       <div className={styles.profileContainer}>
         <div>
-          <b className={styles.username}>
+          <p className={styles.username}>
             {capitalizeFirstLetter(user.username)}
-          </b>
+          </p>
         </div>
         <ImageUpload />
       </div>
