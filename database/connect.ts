@@ -9,7 +9,7 @@ declare module globalThis {
   let postgresSqlClient: Sql;
 }
 
-// Connect only once to the database
+// Connect only once to the databasee
 // https://github.com/vercel/next.js/issues/7811#issuecomment-715259370
 function connectOneTimeToDatabase() {
   if (!('postgresSqlClient' in globalThis)) {

@@ -56,7 +56,6 @@ export default function CalorieCalculator() {
       setShowFormError(true);
     }
   };
-
   return (
     <div className={styles.container}>
       <h2>Calorie Calculator</h2>
