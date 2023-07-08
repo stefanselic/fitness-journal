@@ -28,7 +28,7 @@ export default function LoginForm(props: Props) {
       return;
     }
     router.push(getSafeReturnToPath(props.returnTo) || '/homepage');
-    // we may have in the future revalidatePath()
+    // we may have in the future revalidatePath()()
     router.refresh();
   }
 
