@@ -5,7 +5,7 @@ import styles from './page.module.scss';
 import Image from 'next/image';
 
 export default function ImageUpload() {
-  const [file, setFile] = useState('/images/surfen.png');
+  const [file, setFile] = useState('/images/profile-user.png');
 
   const handleFileChange = (event: any) => {
     const uploadedFile = event.currentTarget.files[0];

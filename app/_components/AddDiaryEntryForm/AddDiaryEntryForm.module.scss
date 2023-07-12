@@ -6,12 +6,13 @@
   input {
     // width: 50px;
     // margin-left: 8px;
+    // max-width: 139px;
     padding: 2px;
     text-align: center;
     border-radius: 5px;
     border: 1px solid #c2c2c2c2;
     box-shadow: 0px 4px 6px -1px #0000001a;
-    @media only screen and (max-width: 800px) {
+    @media only screen and (max-width: 1500px) {
       width: 100%;
     }
     @media only screen and (max-width: 390px) {
@@ -39,7 +40,7 @@
   border-radius: 5px;
   border: 1px solid #c2c2c2c2;
   box-shadow: 0px 4px 6px -1px #0000001a;
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 1500px) {
     width: 100%;
   }
   @media only screen and (max-width: 390px) {
@@ -55,9 +56,10 @@
   font-weight: bold;
   border: none;
   cursor: pointer;
-  transition: all 0.5s ease;
   &:hover {
     background: linear-gradient(50deg, #4338ca 30%, #ad38ca 80%);
     color: white;
+    transition: all 0.5s ease;
+    transform: scale(0.95);
   }
 }

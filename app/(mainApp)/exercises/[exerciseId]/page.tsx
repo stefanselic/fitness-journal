@@ -18,6 +18,18 @@ type Props = {
   };
 };
 
+function transformString(searchString) {
+  const regex = /\d+\.(.*?)(?=\d+\.|$)/gs;
+  const matches = searchString.matchAll(regex);
+  const result = [];
+
+  for (const match of matches) {
+    result.push(match[1].trim());
+  }
+
+  return result;
+}
+
 export default async function ExercisePage(props: Props) {
   const singleExercise = await getExerciseById(Number(props.params.exerciseId));
   if (!singleExercise) {
@@ -38,6 +50,8 @@ export default async function ExercisePage(props: Props) {
   function capitalizeFirstLetter(str: string) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
+
+  const transformedStringArray = transformString(singleExercise.instructions);
 
   return (
     <main className={styles.mainContainer}>
@@ -60,7 +74,11 @@ export default async function ExercisePage(props: Props) {
         </div>
         <div className={styles.exerciseInstruction}>
           <h3>Instructions:</h3>
-          <p>{singleExercise.instructions}</p>
+          <ol>
+            {transformedStringArray.map((instructionStep, index) => (
+              <li key={index}>{instructionStep}</li>
+            ))}
+          </ol>
         </div>
       </div>
     </main>

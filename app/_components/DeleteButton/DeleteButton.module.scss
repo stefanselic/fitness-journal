@@ -12,10 +12,11 @@
     font-weight: bold;
     font-size: 16px;
     cursor: pointer;
-    transition: all 0.5s ease;
     &:hover {
       background: linear-gradient(50deg, #4338ca 30%, #ad38ca 80%);
       color: white;
+      transition: all 0.5s ease;
+      transform: scale(0.95);
     }
   }
 }

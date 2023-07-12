@@ -8,8 +8,9 @@
   border: none;
   position: relative;
   cursor: pointer;
-  transition: all 0.5s ease;
   &:hover {
+    transition: all 0.5s ease;
+    transform: scale(0.95);
     background: linear-gradient(50deg, #4338ca 30%, #ad38ca 80%);
     color: white;
   }

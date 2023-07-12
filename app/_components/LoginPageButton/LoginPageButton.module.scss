@@ -1,6 +1,6 @@
 .button {
   padding: 8px;
-  width: 360px;
+  width: 100%;
   height: 40px;
   border-radius: 10px;
   background-color: #fff;
@@ -9,18 +9,11 @@
   font-size: 16px;
   border: 2px solid #4338ca;
   cursor: pointer;
-  transition: all 0.5s ease;
   &:hover {
     border: none;
     color: white;
     background: linear-gradient(50deg, #4338ca 30%, #ad38ca 80%);
-  }
-  @media only screen and (max-width: 360px) {
-    margin: 0 auto;
-    width: 330px;
-  }
-  @media only screen and (max-width: 330px) {
-    margin: 0 auto;
-    width: 300px;
+    transition: all 0.5s ease;
+    transform: scale(0.95);
   }
 }

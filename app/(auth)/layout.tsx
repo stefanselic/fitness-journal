@@ -4,13 +4,13 @@ import gymStats from '../../public/images/fitness-stats.png';
 import Image from 'next/image';
 
 type LandingPageProps = {
-  children: any,
+  children: any;
 };
 
 export default function LandingPage({ children }: LandingPageProps) {
   return (
     <LandingPageLayout>
-      <div className={styles.mainContainer}>
+      <div>
         <div className={styles.title}>
           <p>
             <i>Fit</i>

@@ -23,7 +23,7 @@ export default async function LandingPage() {
 
   return (
     <LandingPageLayout>
-      <div className={styles.mainContainer}>
+      <div>
         <div className={styles.title}>
           <p>
             <i>Fit</i>
