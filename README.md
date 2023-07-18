@@ -1,8 +1,8 @@
 ## Description
 
-Full-Stack Web Application that allows user to track exercises during training and watch his progress overtime.
-and many other features like:
+FitTRACK is a Progressive Web Application that works like a diary and allows the users to track exercises during their workout. They can select from over 20 exercises and enter the sets, repetition and weight for it. Overtime they can compare their progress. Aside from that it has also other features such as, the user can upload their profile picture to cloudinary, read instructions for all the exercises in the exercises page and are also able to calculate their calories.
 
+- Homepage for tracking Exercises
 - Profile page with posibility to upload users image
 - A read only page for each exercise to give user instructions.
 - Side Feature like Calories Calculator.
@@ -19,7 +19,7 @@ and many other features like:
 - Playwright
 - Vercel
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+These technologies allowed me to create Powerful Component-Based Development, Fast and Performant User Interfaces and also allowed me to have an great Developer Experience.
 
 ## Getting Started
 
