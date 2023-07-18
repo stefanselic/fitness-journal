@@ -25,7 +25,6 @@ export default function RegisterForm() {
 
     console.log(data.user);
     router.push(`/profile/${data.user.username}`);
-    // we may have in the future revalidatePath()
     router.refresh();
   }
 
