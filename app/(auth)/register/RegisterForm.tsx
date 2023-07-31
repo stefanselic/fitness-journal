@@ -23,7 +23,6 @@ export default function RegisterForm() {
       return;
     }
 
-    console.log(data.user);
     router.push(`/profile/${data.user.username}`);
     router.refresh();
   }
