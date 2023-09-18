@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import styles from './page.module.scss';
 import Image from 'next/image';
+import { v2 as cloudinary } from 'cloudinary';
 
 export default function ImageUpload() {
   const [file, setFile] = useState('/images/profile-user.png');
