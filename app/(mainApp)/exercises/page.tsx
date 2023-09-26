@@ -2,7 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from './page.module.scss';
 import { getExercises } from '../../../database/exercises';
-import Exercises from '../../_components/Exercises/Exercises';
+import ExerciseList from '../exercisesss/Exercise';
+// import Exercises from '../../_components/Exercises/Exercises';
 
 export const metadata = {
   title: 'Exercises',
@@ -40,7 +41,8 @@ export default async function ProductsPage() {
           );
         })}
       </main>
-      <Exercises />
+      <ExerciseList />
+      {/* <Exercises /> */}
     </>
   );
 }
