@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from './page.module.scss';
 import { getExercises } from '../../../database/exercises';
-import ExercisePage from './[exerciseId]/page';
+import Exercises from '../../_components/Exercises/Exercises';
 
 export const metadata = {
   title: 'Exercises',
@@ -40,7 +40,7 @@ export default async function ProductsPage() {
           );
         })}
       </main>
-      {/* <ExercisePage /> */}
+      <Exercises />
     </>
   );
 }

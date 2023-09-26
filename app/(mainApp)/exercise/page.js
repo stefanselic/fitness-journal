@@ -2,9 +2,10 @@
 
 // import Link from 'next/link';
 // import { useEffect, useState } from 'react';
+// import styles from '../exercise/page.module.scss';
 
 // export default function ExerciseList() {
-//   const muscles = ['abdominals', 'calves', 'forearms', 'glutes', 'lower_back'];
+//   const muscles = ['calves', 'forearms', 'lower_back'];
 
 //   const [exercises, setExercises] = useState([]);
 
@@ -36,48 +37,35 @@
 //         }
 
 //         setExercises(results);
+//         console.log(results);
+//         const allExercises = results;
+//         console.log(allExercises);
 //       } catch (error) {
 //         console.error('Error: ', error);
 //       }
 //     }
-
 //     fetchExercises();
 //   }, []);
 
 //   return (
-//     <div>
-//       {/* <h1>EXERCISES</h1> */}
+//     <div className={styles.container}>
 //       {exercises.map((muscleExercises) => (
 //         <div key={muscleExercises.muscle}>
-//           <h2>Muscle: {muscleExercises.muscle}</h2>
-//           <ul>
-//             {muscleExercises.exercises.map((exercise) => (
-//               <>
-//                 <Link href={`/exercises-muscle/${exercise.name}`}>
+//           {muscleExercises.exercises.map((exercise) => (
+//             <>
+//               <div className={styles.exerciseContainer}>
+//                 <Link
+//                   href={`/exercise/${exercise.name}`}
+//                   className={styles.link}
+//                 >
 //                   <li key={exercise.id}> {exercise.name}</li>
 //                 </Link>
-//                 {/* <li>Instructions: {exercise.instructions}</li> */}
-//               </>
-//             ))}
-//           </ul>
+//               </div>
+//               {/* <li>Instructions: {exercise.instructions}</li> */}
+//             </>
+//           ))}
 //         </div>
 //       ))}
 //     </div>
 //   );
-// }
-
-// {
-//   /* <div>
-//   <Link href={`/exercises/${exercise.id}`} className={styles.link}>
-//     {exercise.name.toUpperCase()}
-//     <div className={styles.imageContainer}>
-//       <Image
-//         className={styles.image}
-//         alt={exercise.name}
-//         src={`/images/${exercise.name}.png`}
-//         fill
-//       />
-//     </div>
-//   </Link>
-// </div>; */
 // }
