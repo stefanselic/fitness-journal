@@ -2,10 +2,10 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import styles from '../exercisesss/Exercise.module.scss';
-// import SingleExercise from './SingleExercise';
+import styles from '../exercise/page.module.scss';
+import { capitalizeFirstLetter } from '../../../../util/capitalizeFirstLetter';
 
-export default function ExerciseList() {
+export default function ExerciseList(props) {
   const muscles = [
     'calves',
     'forearms',
@@ -54,21 +54,27 @@ export default function ExerciseList() {
   }, []);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.mainContainer}>
       {exercises.map((muscleExercises) => (
         <div key={muscleExercises.muscle}>
           {muscleExercises.exercises.map((exercise) => (
             <>
-              <div className={styles.exerciseContainer}>
-                <Link href={`/exercisesss/exercise`} className={styles.link}>
-                  <div key={exercise.id}> {exercise.name}</div>
-                  <div className={styles.imageContainer}>
-                    <img
-                      src={`/images/${exercise.name}.png`}
-                      className={styles.image}
-                    ></img>
-                  </div>
-                </Link>
+              <div className={styles.secondContainer}>
+                <h1 key={exercise.id}> {exercise.name}</h1>
+                <div className={styles.exerciseMuscleType}>
+                  <span>Muscle:</span>
+                  <span>{capitalizeFirstLetter(exercise.muscle)}</span>
+                </div>
+                <div>
+                  <img
+                    src={`/images/${exercise.name}.png`}
+                    className={styles.exerciseImage}
+                  ></img>
+                </div>
+                <div className={styles.exerciseInstruction}>
+                  <h3>Instructions:</h3>
+                  {exercise.instructions}
+                </div>
               </div>
             </>
           ))}
@@ -76,20 +82,4 @@ export default function ExerciseList() {
       ))}
     </div>
   );
-}
-
-{
-  /* <div>
-  <Link href={`/exercises/${exercise.id}`} className={styles.link}>
-    {exercise.name.toUpperCase()}
-    <div className={styles.imageContainer}>
-      <Image
-        className={styles.image}
-        alt={exercise.name}
-        src={`/images/${exercise.name}.png`}
-        fill
-      />
-    </div>
-  </Link>
-</div>; */
 }

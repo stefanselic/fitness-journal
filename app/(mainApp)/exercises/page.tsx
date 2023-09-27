@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from './page.module.scss';
 import { getExercises } from '../../../database/exercises';
-import ExerciseList from '../exercisesss/Exercise';
+import ExerciseList from '../exercisess/Exercise';
 // import Exercises from '../../_components/Exercises/Exercises';
 
 export const metadata = {

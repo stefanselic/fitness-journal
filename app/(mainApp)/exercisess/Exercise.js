@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-// import SingleExercise from './SingleExercise';
+import styles from '../exercisess/Exercise.module.scss';
 
 export default function ExerciseList() {
   const muscles = [
@@ -53,19 +53,21 @@ export default function ExerciseList() {
   }, []);
 
   return (
-    <div>
+    <div className={styles.container}>
       {exercises.map((muscleExercises) => (
         <div key={muscleExercises.muscle}>
           {muscleExercises.exercises.map((exercise) => (
             <>
-              <div>
-                <div key={exercise.id}> {exercise.name}</div>
-                <div>
-                  <img src={`/images/${exercise.name}.png`}></img>
-                </div>
-
-                <div>Muscle: {exercise.muscle}</div>
-                <div>Instructions: {exercise.instructions}</div>
+              <div className={styles.exerciseContainer}>
+                <Link href={`/exercisess/exercise`} className={styles.link}>
+                  <div key={exercise.id}> {exercise.name}</div>
+                  <div className={styles.imageContainer}>
+                    <img
+                      src={`/images/${exercise.name}.png`}
+                      className={styles.image}
+                    ></img>
+                  </div>
+                </Link>
               </div>
             </>
           ))}

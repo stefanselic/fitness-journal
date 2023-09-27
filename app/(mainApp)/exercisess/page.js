@@ -1,5 +1,5 @@
-import ExerciseList from '../exercisesss/Exercise';
-import Exercise from '../exercisesss/Exercise';
+import ExerciseList from './Exercise';
+import Exercise from './Exercise';
 
 export default function allExercises(props) {
   return (
