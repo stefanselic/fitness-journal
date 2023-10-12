@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from './page.module.scss';
 import { getExercises } from '../../../database/exercises';
-import ExerciseList from '../exercisess/Exercise';
+import ExerciseList from './ExerciseList';
 // import Exercises from '../../_components/Exercises/Exercises';
 
 export const metadata = {
@@ -10,8 +10,47 @@ export const metadata = {
   description: 'All exercises',
 };
 
+const muscles = [
+  'calves',
+  'forearms',
+  'quadriceps',
+  'abdominals',
+  'glutes',
+  'adductors',
+];
+
+async function getExercisesFromApi(muscle: string) {
+  return await fetch(
+    `https://api.api-ninjas.com/v1/exercises?muscle=${muscle}`,
+    {
+      method: 'GET',
+      headers: {
+        'X-Api-Key': 'Fiy5RZxu2HF/hbu3My6p3A==TSdTBXwsxajuXfoi',
+        'Content-Type': 'application/json',
+      },
+    },
+  );
+}
+
 export default async function ProductsPage() {
+  // this comes from database
   const exercises = await getExercises();
+
+  // this comes from api
+  const res = await Promise.all(
+    muscles.map((muscle) => {
+      return getExercisesFromApi(muscle);
+    }),
+    // above is same as below:
+    // getExercisesFromApi('calves'),
+    // getExercisesFromApi('forearms');
+  );
+  const data = await Promise.all(
+    res.map((r) => {
+      return r.json();
+    }),
+  );
+
   return (
     <>
       <main className={styles.container}>
@@ -41,8 +80,9 @@ export default async function ProductsPage() {
           );
         })}
       </main>
-      <ExerciseList />
-      {/* <Exercises /> */}
+      <ExerciseList exercises={data.flat()} />
     </>
   );
 }
+
+['1', '2342', 'fsdf', 'sdfsf'];

@@ -153,12 +153,60 @@ export const exercises = [
     instructions:
       '1.Lie flat on your back on a mat with your legs fully extended and your arms resting by your sides. Keep your lower back pressed against the mat to maintain stability. 2.Engage your core muscles by gently contracting your abdominal muscles. This will help stabilize your torso throughout the exercise. 3.Keeping your legs straight and together, slowly lift them upward off the ground, using your lower abdominal muscles. Continue lifting until your legs are perpendicular to the floor or as high as you can comfortably go without straining your lower back. 4.Pause briefly at the top of the movement, focusing on engaging your lower abdominal muscles. Slowly lower your legs back down to the starting position in a controlled manner. Repeat for the desired number of repetitions. HINT:Remember to maintain proper form throughout the exercise, avoiding any swinging or jerking motions. Focus on using your lower abdominal muscles to lift your legs, rather than relying on momentum. Adjust the difficulty of the exercise by either bending your knees slightly or adding ankle weights as your strength increases.',
   },
+
   {
     id: 21,
     name: 'heel touches',
     muscle: 'abs',
     instructions:
       '1.Lie flat on your back with legs extended and arms by your sides. 2.Lift your upper body off the ground, reaching towards your feet. 3.Twist your torso to the right, reaching your right hand towards your right heel. 4.Return to the starting position and twist your torso to the left, reaching your left hand towards your left heel. 5.Repeat steps 3 and 4 for the desired number of repetitions or time, alternating sides with each twist. Remember to engage your abdominal muscles and maintain proper form throughout the exercise.',
+  },
+
+  {
+    id: 22,
+    name: 'Smith Machine Calf Raise',
+    muscle: 'calves',
+    instructions:
+      'Place a block or weight plate below the bar on the Smith machine. Set the bar to a position that best matches your height. Once the correct height is chosen and the bar is loaded, step onto the plates with the balls of your feet and place the bar on the back of your shoulders. Take the bar with both hands facing forward. Rotate the bar to unrack it. This will be your starting position. Raise your heels as high as possible by pushing off of the balls of your feet, flexing your calf at the top of the contraction. Your knees should remain extended. Hold the contracted position for a second before you start to go back down. Return slowly to the starting position as you breathe in while lowering your heels. Repeat for the recommended amount of repetitions.',
+  },
+  {
+    id: 23,
+    name: 'Rickshaw Carry',
+    muscle: 'forearms',
+    instructions:
+      'Position the frame at the starting point, and load with the appropriate weight. Standing in the center of the frame, begin by gripping the handles and driving through your heels to lift the frame. Ensure your chest and head are up and your back is straight. Immediately begin walking briskly with quick, controlled steps. Keep your chest up and head forward, and make sure you continue breathing. Bring the frame to the ground after you have reached the end point.',
+  },
+
+  {
+    id: 24,
+    name: 'Single-Leg Press',
+    muscle: 'Quadriceps',
+    instructions:
+      'Load the sled to an appropriate weight. Seat yourself on the machine, planting one foot on the platform in line with your hip. Your free foot can be placed on the ground. Maintain good spinal position with your head and chest up. Supporting the weight, fully extend the knee and unlock the sled. This will be your starting position. Lower the weight by flexing the hip and knee, continuing as far as flexibility allows. Do not allow your lumbar to take the load by moving your pelvis. At the bottom of the motion pause briefly and then return to the starting position by extending the hip and knee. Complete all repetitions for one leg before switching to the other.',
+  },
+
+  {
+    id: 25,
+    name: 'Landmine twist',
+    muscle: 'Abdominals',
+    instructions:
+      'Position a bar into a landmine or securely anchor it in a corner. Load the bar to an appropriate weight. Raise the bar from the floor, taking it to shoulder height with both hands with your arms extended in front of you. Adopt a wide stance. This will be your starting position. Perform the movement by rotating the trunk and hips as you swing the weight all the way down to one side. Keep your arms extended throughout the exercise. Reverse the motion to swing the weight all the way to the opposite side. Continue alternating the movement until the set is complete.',
+  },
+
+  {
+    id: 26,
+    name: 'Barbell glute bridge',
+    muscle: 'Glutes',
+    instructions:
+      'Position a bar into a landmine or securely anchor it in a corner. Load the bar to an appropriate weight. Raise the bar from the floor, taking it to shoulder height with both hands with your arms extended in front of you. Adopt a wide stance. This will be your starting position. Perform the movement by rotating the trunk and hips as you swing the weight all the way down to one side. Keep your arms extended throughout the exercise. Reverse the motion to swing the weight all the way to the opposite side. Continue alternating the movement until the set is complete.',
+  },
+
+  {
+    id: 27,
+    name: 'Thigh adductor',
+    muscle: 'Adductors',
+    instructions:
+      'Begin seated on the ground with a loaded barbell over your legs. Using a fat bar or having a pad on the bar can greatly reduce the discomfort caused by this exercise. Roll the bar so that it is directly above your hips, and lay down flat on the floor. Begin the movement by driving through with your heels, extending your hips vertically through the bar. Your weight should be supported by your upper back and the heels of your feet. Extend as far as possible, then reverse the motion to return to the starting position.',
   },
 ];
 
