@@ -10,14 +10,7 @@ export const metadata = {
   description: 'All exercises',
 };
 
-const muscles = [
-  'calves',
-  'forearms',
-  'quadriceps',
-  'abdominals',
-  'glutes',
-  'adductors',
-];
+const muscles = ['calves', 'forearms', 'quadriceps'];
 
 async function getExercisesFromApi(muscle: string) {
   return await fetch(
@@ -84,5 +77,3 @@ export default async function ProductsPage() {
     </>
   );
 }
-
-['1', '2342', 'fsdf', 'sdfsf'];
